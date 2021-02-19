@@ -1,21 +1,21 @@
 /* eslint-env browser */
 import React from "react";
 import ReactDOM from "react-dom";
-import firebase from "firebase/app";
+import app from "firebase/app";
 import App from "./App/App";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBf6OsN4SadERSrtV__C_RsEEP8o7m6g-8",
-  authDomain: "tindoori-f61e7.firebaseapp.com",
-  projectId: "tindoori-f61e7",
-  storageBucket: "tindoori-f61e7.appspot.com",
-  messagingSenderId: "1071643654171",
-  appId: "1:1071643654171:web:0b224aaf2f4c829d8da0be",
-  measurementId: "G-FR5H100XTC",
+const config = {
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+app.initializeApp(config);
 
 ReactDOM.render(
   <React.StrictMode>
