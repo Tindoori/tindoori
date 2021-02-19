@@ -1,9 +1,10 @@
 import React from "react";
+import Card from "../Card/Card";
 
 function App() {
   return (
     <div className="App">
-      <p>Tindoori :D</p>
+      <Card />
     </div>
   );
 }
