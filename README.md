@@ -19,7 +19,13 @@ By default, we're using the AirBnB codestyle (https://github.com/airbnb/javascri
 
 ## Git flow
 
-We are working with git flow. See this link for further explination: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=Gitflow%20Workflow%20is%20a%20Git,designed%20around%20the%20project%20release.
+We are working with git flow. Quick summary:
+* Features are developed in the feature branch which is based on the current develop branch
+* Feature branches are reviewed by another developer
+* Feature branches get merged with develop
+* After every sprint, the develop branch will be merged with the master branch
+
+See this link for further explination: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=Gitflow%20Workflow%20is%20a%20Git,designed%20around%20the%20project%20release.
 
 ## Commits
 
