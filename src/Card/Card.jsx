@@ -3,6 +3,7 @@ import TinderCard from "react-tinder-card";
 
 export default function Card() {
   const onSwipe = (direction) => {
+    // TODO: Replace with a call to the database
     console.log(`you swiped: ${direction}`);
   };
 
