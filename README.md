@@ -15,7 +15,7 @@ Running `npm start` will start the project on your localhost. The page will relo
 
 ## Code style
 
-By default, we're using the AirBnB codestyle (https://github.com/airbnb/javascript). These rules are strict and will help us maintain consistent and readible code. If you think the rules are too strict, discuss it with the team. We can add exceptions to the checks.
+By default, we're using the AirBnB codestyle (https://github.com/airbnb/javascript) in combination with the Prettier plugin. These rules are strict and will help us maintain consistent and readible code. If you think the rules are too strict, discuss it with the team. We can add exceptions to the checks.
 
 ## Git flow
 
