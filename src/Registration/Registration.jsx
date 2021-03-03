@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import firebase from "firebase/app";
 
 export default function Registration() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  const [user, setUser] = useState({
+    displayName: "",
+    email: "",
+    password: "",
+    error: "",
+  });
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(user.email, user.password)
       // eslint-disable-next-line no-unused-vars
       .then((userCredential) => {
         // TODO confirmation email
@@ -23,11 +26,19 @@ export default function Registration() {
       });
   };
 
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+      error: "",
+    });
+  };
+
   return (
     <div className="registration">
       <h1>Create an account</h1>
       <div>
-        <form className="registration-form" onSubmit={onSubmit}>
+        <form className="registration-form" onSubmit={handleSubmit}>
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="displayName" className="block">
             Full Name:
@@ -35,10 +46,9 @@ export default function Registration() {
           <input
             type="text"
             name="displayName"
-            value={displayName}
             placeholder="E.g: Joe"
             id="displayName"
-            onChange={(e) => setDisplayName(e.target.value)}
+            onChange={handleChange}
           />
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="userEmail" className="block">
@@ -46,11 +56,10 @@ export default function Registration() {
           </label>
           <input
             type="email"
-            name="userEmail"
-            value={email}
+            name="email"
             placeholder="E.g: joe123@gmail.com"
             id="userEmail"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleChange}
           />
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="userPassword" className="block">
@@ -58,11 +67,10 @@ export default function Registration() {
           </label>
           <input
             type="password"
-            name="userPassword"
-            value={password}
+            name="password"
             placeholder="Your Password"
             id="userPassword"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange}
           />
           <button type="submit">Create account</button>
         </form>
