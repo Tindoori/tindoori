@@ -6,11 +6,20 @@ export default function Registration() {
     displayName: "",
     email: "",
     password: "",
+    confirmPassword: "",
     error: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (user.password !== user.confirmPassword) {
+      setUser({
+        ...user,
+        error: "The passwords do not match!",
+      });
+      // Stop the form from submitting
+      return false;
+    }
     firebase
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password)
@@ -24,6 +33,7 @@ export default function Registration() {
         const errorMessage = error.message;
         console.log(errorCode + errorMessage);
       });
+    return true;
   };
 
   const handleChange = (e) => {
@@ -47,6 +57,7 @@ export default function Registration() {
               placeholder="E.g: Joe"
               id="displayName"
               onChange={handleChange}
+              required
             />
           </label>
           <label htmlFor="userEmail" className="block">
@@ -57,6 +68,7 @@ export default function Registration() {
               placeholder="E.g: joe123@gmail.com"
               id="userEmail"
               onChange={handleChange}
+              required
             />
           </label>
           <label htmlFor="userPassword" className="block">
@@ -67,8 +79,23 @@ export default function Registration() {
               placeholder="Your Password"
               id="userPassword"
               onChange={handleChange}
+              required
+              min={6}
             />
           </label>
+          <label htmlFor="passwordConfirm" className="block">
+            Password confirmation:
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              id="userConfirmPassword"
+              onChange={handleChange}
+              required
+              min={6}
+            />
+          </label>
+          {user.error && <h4>{user.error}</h4>}
           <button type="submit">Create account</button>
         </form>
       </div>
