@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import firebase from "firebase/app";
+import { Alert, Button, Card, Container, Form } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Registration() {
   const [user, setUser] = useState({
@@ -25,13 +27,17 @@ export default function Registration() {
       .createUserWithEmailAndPassword(user.email, user.password)
       // eslint-disable-next-line no-unused-vars
       .then((userCredential) => {
-        // TODO confirmation email
+        userCredential.user.updateProfile({
+          displayName: user.displayName,
+        });
         firebase.auth().signOut();
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
+        setUser({
+          ...user,
+          error: errorMessage,
+        });
       });
     return true;
   };
@@ -45,60 +51,60 @@ export default function Registration() {
   };
 
   return (
-    <div className="registration">
-      <h1>Create an account</h1>
-      <div>
-        <form className="registration-form" onSubmit={handleSubmit}>
-          <label htmlFor="displayName" className="block">
-            Full Name:
-            <input
+    <Container fluid="md">
+      <Card>
+        <Card.Title>Create an account</Card.Title>
+        <Form className="registration-form" onSubmit={handleSubmit}>
+          <Form.Group controlId="formDisplayName">
+            <Form.Label>Full Name:</Form.Label>
+            <Form.Control
               type="text"
-              name="displayName"
               placeholder="E.g: Joe"
-              id="displayName"
               onChange={handleChange}
+              name="displayName"
               required
             />
-          </label>
-          <label htmlFor="userEmail" className="block">
-            Email:
-            <input
+          </Form.Group>
+          <Form.Group controlId="formEmail">
+            <Form.Label>Email address:</Form.Label>
+            <Form.Control
               type="email"
-              name="email"
               placeholder="E.g: joe123@gmail.com"
-              id="userEmail"
+              className="email"
               onChange={handleChange}
+              name="email"
               required
             />
-          </label>
-          <label htmlFor="userPassword" className="block">
-            Password:
-            <input
+          </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
               type="password"
-              name="password"
               placeholder="Your Password"
-              id="userPassword"
+              className="password"
               onChange={handleChange}
+              name="password"
               required
               min={6}
             />
-          </label>
-          <label htmlFor="passwordConfirm" className="block">
-            Password confirmation:
-            <input
+          </Form.Group>
+          <Form.Group controlId="formConfirmPassword">
+            <Form.Label>Password confirmation:</Form.Label>
+            <Form.Control
               type="password"
-              name="confirmPassword"
               placeholder="Confirm Password"
-              id="userConfirmPassword"
               onChange={handleChange}
+              name="confirmPassword"
               required
               min={6}
             />
-          </label>
-          {user.error && <h4>{user.error}</h4>}
-          <button type="submit">Create account</button>
-        </form>
-      </div>
-    </div>
+          </Form.Group>
+          {user.error && <Alert variant="danger">{user.error}</Alert>}
+          <Button variant="danger" type="submit">
+            Create account
+          </Button>
+        </Form>
+      </Card>
+    </Container>
   );
 }
