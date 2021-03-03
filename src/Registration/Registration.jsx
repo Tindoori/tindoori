@@ -39,39 +39,36 @@ export default function Registration() {
       <h1>Create an account</h1>
       <div>
         <form className="registration-form" onSubmit={handleSubmit}>
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="displayName" className="block">
             Full Name:
+            <input
+              type="text"
+              name="displayName"
+              placeholder="E.g: Joe"
+              id="displayName"
+              onChange={handleChange}
+            />
           </label>
-          <input
-            type="text"
-            name="displayName"
-            placeholder="E.g: Joe"
-            id="displayName"
-            onChange={handleChange}
-          />
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="userEmail" className="block">
             Email:
+            <input
+              type="email"
+              name="email"
+              placeholder="E.g: joe123@gmail.com"
+              id="userEmail"
+              onChange={handleChange}
+            />
           </label>
-          <input
-            type="email"
-            name="email"
-            placeholder="E.g: joe123@gmail.com"
-            id="userEmail"
-            onChange={handleChange}
-          />
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="userPassword" className="block">
             Password:
+            <input
+              type="password"
+              name="password"
+              placeholder="Your Password"
+              id="userPassword"
+              onChange={handleChange}
+            />
           </label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Your Password"
-            id="userPassword"
-            onChange={handleChange}
-          />
           <button type="submit">Create account</button>
         </form>
       </div>
