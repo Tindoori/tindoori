@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback, useState } from "react";
+import { Card, ProgressBar, Button } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 import { storage } from "../FileUpload/FileUpload";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // TODO: generiek schrijven
 export default function DragDrop() {
@@ -44,19 +46,22 @@ export default function DragDrop() {
   };
 
   return (
-    <div>
-      <progress value={progress} max="100" />
-      <div {...getRootProps()}>
+    <div {...getRootProps()}>
+      <Card style={{ width: "18rem" }}>
         <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop the image here ...</p>
-        ) : (
-          <p>Drag over an image or click to select the image</p>
-        )}
-      </div>
-      <button type="submit" onClick={handleUpload}>
-        Upload!
-      </button>
+        <Card.Body>
+          <Card.Title>Upload image</Card.Title>
+          <Card.Text>
+            {isDragActive
+              ? "Drop the image here ..."
+              : "Drag over an image or click to select the image"}
+          </Card.Text>
+          <Button type="submit" onClick={handleUpload}>
+            Upload
+          </Button>
+        </Card.Body>
+        <ProgressBar now={progress} />
+      </Card>
     </div>
   );
 }
