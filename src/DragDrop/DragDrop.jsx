@@ -6,12 +6,22 @@ import { storage } from "../FileUpload/FileUpload";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // TODO: generiek schrijven
+// TODO: previews laten zien
+// TODO: alleen images accepteren
 export default function DragDrop() {
   const [image, setImage] = useState([]);
+  // const [preview, setPreview] = useState([]);
   const [imgUrl, setImgUrl] = useState("");
   const [progress, setProgress] = useState(0);
 
   const onDrop = useCallback((acceptedImage) => {
+    // setPreview(
+    //   acceptedImage.map((file) =>
+    //     Object.assign(file, {
+    //       preview: URL.createObjectURL(file),
+    //     })
+    //   )
+    // );
     setImage(acceptedImage);
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
