@@ -8,7 +8,7 @@ export default function Card() {
   const [recipe, setRecipe] = useState([]);
 
   // TODO pass id of specific recipe to this class. For now you can use "ojsxGQ2A8j4cHSvK8Pwi" or "QIhPRw1ZeNDtCnTCQVl4".
-  const recipeId = "";
+  const recipeId = "ojsxGQ2A8j4cHSvK8Pwi";
 
   useEffect(() => {
     db.collection("recipe")
