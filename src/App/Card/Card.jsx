@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
-import "firebase/storage";
+import "firebase/firestore";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Card() {
-  const ref = firebase.storage().ref("/meals/Burger.png");
-  const url = ref.getDownloadURL();
+  const db = firebase.firestore();
+  const [recipe, setRecipe] = useState([]);
+  const id = "QIhPRw1ZeNDtCnTCQVl4";
+
+  useEffect(() => {
+    db.collection("recipe")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (doc.id === id) {
+            setRecipe(doc.data());
+          }
+        });
+      });
+  }, [db]);
 
   const style = {
     backgroundColor: "#FFFFFF",
@@ -16,13 +30,10 @@ export default function Card() {
 
   return (
     <div style={style} className="card">
-      <img src={{ uri: url }} alt="recipe" />
-      <h1 className="dish-title">Dish name</h1>
-      <p className="dish-description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt
-        cong...
-      </p>
-      <p className="dish-cook-time">15 min</p>
+      <img width="100%" height="65%" src={recipe.imgPath} alt="recipe" />
+      <h1 className="dish-title">{recipe.name}</h1>
+      <p className="dish-description">{recipe.description}</p>
+      <p className="dish-cook-time">{recipe.cookingTime} min</p>
     </div>
   );
 }
