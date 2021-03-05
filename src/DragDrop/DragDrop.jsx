@@ -1,18 +1,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
-import Dropzone from "react-dropzone";
+import React, { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 
 export default function DragDrop() {
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log(acceptedFiles);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
   return (
-    <Dropzone onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
-      {({ getRootProps, getInputProps }) => (
-        <section>
-          <div {...getRootProps()}>
-            <input {...getInputProps()} />
-            <p>Drag and drop some files here, or click to select files</p>
-          </div>
-        </section>
+    <div {...getRootProps()}>
+      <input {...getInputProps()} />
+      {isDragActive ? (
+        <p>Drop the files here ...</p>
+      ) : (
+        <p>Drag over a files or click to select files</p>
       )}
-    </Dropzone>
+      <button type="submit">Upload!</button>
+    </div>
   );
 }
