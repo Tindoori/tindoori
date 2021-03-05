@@ -1,10 +1,11 @@
-/* eslint-env browser */
-import React from "react";
+/* eslint-disable */
+import React,{ Suspense } from "react";
 import ReactDOM from "react-dom";
+import { FirebaseAppProvider } from 'reactfire';
 import app from "firebase/app";
 import App from "./App/App";
 
-const config = {
+export const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_PROJECT_ID,
@@ -15,11 +16,15 @@ const config = {
 };
 
 // Initialize Firebase
-app.initializeApp(config);
+app.initializeApp(firebaseConfig);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <Suspense fallback={<h3>Loading...</h3>}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </Suspense>
+    </FirebaseAppProvider>,
+    document.getElementById('root')
 );
