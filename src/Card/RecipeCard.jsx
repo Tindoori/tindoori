@@ -2,16 +2,18 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Card } from "react-bootstrap";
 
-export default function Card() {
-  const db = firebase.firestore();
+export default function RecipeCard() {
   const [recipe, setRecipe] = useState([]);
+  const fs = firebase.firestore();
 
-  // TODO pass id of specific recipe to this class. For now you can use "ojsxGQ2A8j4cHSvK8Pwi" or "QIhPRw1ZeNDtCnTCQVl4".
+  // TODO pass id of specific recipe to this class.
+  //  For now you can use "ojsxGQ2A8j4cHSvK8Pwi" or "QIhPRw1ZeNDtCnTCQVl4".
   const recipeId = "ojsxGQ2A8j4cHSvK8Pwi";
 
   useEffect(() => {
-    db.collection("recipe")
+    fs.collection("recipe")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -20,13 +22,10 @@ export default function Card() {
           }
         });
       });
-  }, [db]);
+  }, [fs]);
 
   const style = {
     card: {
-      backgroundColor: "#FFFFFF",
-      border: "2px solid #F0F0F0",
-      borderRadius: "3px",
       width: "644px",
       height: "438px",
     },
@@ -39,26 +38,26 @@ export default function Card() {
     },
 
     image: {
-      width: "100%",
-      height: "65%",
+      width: "644px",
+      height: "298px",
     },
   };
 
   return (
-    <div className="card" style={style.card}>
-      <img
-        className="card-img-top"
+    <Card style={style.card}>
+      <Card.Img
+        variant="top"
         src={recipe.imgPath}
-        alt="recipe"
-        style={style.image}
+        width={style.image.width}
+        height={style.image.height}
       />
-      <div className="card-body">
-        <h1 className="dish-title">{recipe.name}</h1>
-        <p className="dish-description" style={style.text}>
+      <Card.Body>
+        <Card.Title>{recipe.name}</Card.Title>
+        <Card.Text className="description" style={style.text}>
           {recipe.description}
-        </p>
-        <p className="dish-cook-time">{recipe.cookingTime} min</p>
-      </div>
-    </div>
+        </Card.Text>
+        <Card.Text className="cook-time">{recipe.cookingTime} min</Card.Text>
+      </Card.Body>
+    </Card>
   );
 }
