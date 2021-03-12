@@ -12,10 +12,10 @@ export default function Registration() {
     confirmPassword: "",
     error: "",
   });
+  const [createdState, setCreatedState] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     // TODO bootstrap validation instead of validation below?
     if (user.password !== user.confirmPassword) {
       setUser({
@@ -35,6 +35,8 @@ export default function Registration() {
           displayName: user.displayName,
         });
 
+        setCreatedState(true);
+
         // Sign user out
         firebase.auth().signOut();
       })
@@ -44,6 +46,7 @@ export default function Registration() {
           ...user,
           error: errorMessage,
         });
+        setCreatedState(false);
       });
     return true;
   };
@@ -54,6 +57,7 @@ export default function Registration() {
       [e.target.name]: e.target.value,
       error: "",
     });
+    setCreatedState(false);
   };
 
   return (
@@ -107,6 +111,9 @@ export default function Registration() {
             />
           </Form.Group>
           {user.error && <Alert variant="danger">{user.error}</Alert>}
+          {createdState && (
+            <Alert variant="info">You have created an account!</Alert>
+          )}
           <Button variant="danger" type="submit">
             Create account
           </Button>
