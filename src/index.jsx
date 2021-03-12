@@ -1,7 +1,7 @@
 /* eslint-env browser */
 import React from "react";
 import ReactDOM from "react-dom";
-import app from "firebase/app";
+import firebase from "firebase/app";
 import App from "./App/App";
 
 const config = {
@@ -15,7 +15,7 @@ const config = {
 };
 
 // Initialize Firebase
-app.initializeApp(config);
+firebase.initializeApp(config);
 
 ReactDOM.render(
   <React.StrictMode>
