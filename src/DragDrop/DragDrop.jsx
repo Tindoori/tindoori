@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from "react";
-import { Card, ProgressBar, Button } from "react-bootstrap";
+import { Card, ProgressBar, Button, Form } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 import { storage } from "../Firebase/Firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -51,31 +51,40 @@ export default function DragDrop() {
     }
   };
 
+  // Shows upload field when nothing is uploaded. Else it shows a preview.
+  const uploadField = files.length ? (
+    <aside className="thumbs-container">{thumbs}</aside>
+  ) : (
+    <div>
+      <Form {...getRootProps()}>
+        <Form.File
+          label={isDragActive ? "Drop the image here" : "Drag over an image"}
+          custom
+        />
+      </Form>
+    </div>
+  );
+
+  const progressBar =
+    progress === 100 ? (
+      <p>image is uploaded</p>
+    ) : (
+      <div>
+        <Button onClick={handleUpload}>Upload</Button>
+        <ProgressBar now={progress} />
+      </div>
+    );
+
   return (
-    <Card className="card">
-      <input {...getInputProps()} />
-      <Card.Body>
-        <Card.Title>Upload image</Card.Title>
-        {files.length ? (
-          <aside className="thumbs-container">{thumbs}</aside>
-        ) : (
-          <div>
-            <Card.Text {...getRootProps()}>
-              {isDragActive
-                ? "Drop the image here ..."
-                : "Drag over an image or click to select the image"}
-            </Card.Text>
-          </div>
-        )}
-        {progress === 100 ? (
-          <p>image is uploaded</p>
-        ) : (
-          <div>
-            <Button onClick={handleUpload}>Upload</Button>
-            <ProgressBar now={progress} />
-          </div>
-        )}
-      </Card.Body>
-    </Card>
+    <div>
+      <Card className="card">
+        <input {...getInputProps()} />
+        <Card.Body>
+          <Card.Title>Upload image</Card.Title>
+          {uploadField}
+          {progressBar}
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
