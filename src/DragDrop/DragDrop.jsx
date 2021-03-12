@@ -101,21 +101,22 @@ export default function DragDrop() {
   };
 
   return (
-    <div {...getRootProps()}>
-      <Card style={{ width: "18rem" }}>
-        <input {...getInputProps()} />
-        <Card.Body>
-          <Card.Title>Upload image</Card.Title>
-          <Card.Text>
+    <Card style={{ width: "18rem" }}>
+      <input {...getInputProps()} />
+      <Card.Body>
+        <Card.Title>Upload image</Card.Title>
+        {files.length ? (
+          <aside style={thumbsContainer}>{thumbs}</aside>
+        ) : (
+          <Card.Text {...getRootProps()}>
             {isDragActive
               ? "Drop the image here ..."
               : "Drag over an image or click to select the image"}
           </Card.Text>
-          <aside style={thumbsContainer}>{thumbs}</aside>
-          <Button onClick={handleUpload}>Upload</Button>
-        </Card.Body>
-        <ProgressBar now={progress} />
-      </Card>
-    </div>
+        )}
+        <Button onClick={handleUpload}>Upload</Button>
+      </Card.Body>
+      <ProgressBar now={progress} />
+    </Card>
   );
 }
