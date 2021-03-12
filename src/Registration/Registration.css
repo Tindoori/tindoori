@@ -4,12 +4,14 @@
 }
 
 .card {
+    padding: 3em;
     position: fixed;
-    max-width: 600px;
-    min-width: 450px;
+    max-width: 40em;
+    min-width: 30em;
+    align-items: center;
 }
 
-.form-control {
-    min-width: 250px;
-    max-width: 300px;
+.form-control, button {
+    min-width: 20em;
+    max-width: 30em;
 }

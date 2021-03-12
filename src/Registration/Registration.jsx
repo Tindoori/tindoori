@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import firebase from "firebase/app";
+import firebase from "firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Registration.css";
+import { Alert, Button, Card, Container, Form } from "react-bootstrap";
 
 export default function Registration() {
   const [user, setUser] = useState({
@@ -28,7 +29,6 @@ export default function Registration() {
     firebase
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password)
-      // eslint-disable-next-line no-unused-vars
       .then((userCredential) => {
         // Set display name for new user
         userCredential.user.updateProfile({
@@ -57,83 +57,61 @@ export default function Registration() {
   };
 
   return (
-    <div className="container">
-      <div className="card align-items-center" onautocomplete>
-        <div className="card-body">
-          <h3 className="card-title">Create an account</h3>
-          <form className="form" onSubmit={handleSubmit}>
-            <div className="form-group row-cols-1 ">
-              <label htmlFor="displayName">
-                Full Name:
-                <input
-                  type="text"
-                  className="form-control"
-                  name="displayName"
-                  placeholder="E.g: Joe"
-                  id="displayName"
-                  onChange={handleChange}
-                  required
-                />
-              </label>
-            </div>
-            <div className="form-group row-cols-1 ">
-              <label htmlFor="userEmail">
-                Email:
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  placeholder="E.g: joe123@gmail.com"
-                  id="userEmail"
-                  onChange={handleChange}
-                  required
-                />
-              </label>
-            </div>
-            <div className="form-group row-cols-1 ">
-              <label htmlFor="userPassword" className="block">
-                Password:
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  placeholder="Your Password"
-                  id="userPassword"
-                  onChange={handleChange}
-                  required
-                  min={6}
-                />
-                <small id="passwordHelp" className="form-text text-muted">
-                  Your password must be 6-20 characters long.
-                </small>
-              </label>
-            </div>
-            <div className="form-group row-cols-1 ">
-              <label htmlFor="passwordConfirm" className="block">
-                Password confirmation:
-                <input
-                  type="password"
-                  className="form-control"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  id="userConfirmPassword"
-                  onChange={handleChange}
-                  required
-                  min={6}
-                />
-              </label>
-            </div>
-            {user.error && (
-              <div className="alert alert-danger row-cols-1 " role="alert">
-                {user.error}
-              </div>
-            )}
-            <button type="submit" className="row-cols-1 btn btn-danger">
-              Create account
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
+    <Container fluid="md">
+      <Card>
+        <Card.Title>Create an account</Card.Title>
+        <Form className="registration-form" onSubmit={handleSubmit}>
+          <Form.Group controlId="formDisplayName">
+            <Form.Label>Full Name:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="E.g: Joe Johnson"
+              onChange={handleChange}
+              name="displayName"
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formEmail">
+            <Form.Label>Email address:</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="E.g: joe123@gmail.com"
+              className="email"
+              onChange={handleChange}
+              name="email"
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Your Password"
+              className="password"
+              onChange={handleChange}
+              name="password"
+              required
+              min={6}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formConfirmPassword">
+            <Form.Label>Password confirmation:</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Confirm Password"
+              onChange={handleChange}
+              name="confirmPassword"
+              required
+              min={6}
+            />
+          </Form.Group>
+          {user.error && <Alert variant="danger">{user.error}</Alert>}
+          <Button variant="danger" type="submit">
+            Create account
+          </Button>
+        </Form>
+      </Card>
+    </Container>
   );
 }
