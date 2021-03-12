@@ -1,7 +1,7 @@
 /* eslint-disable */
-import React,{ Suspense } from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
-import { FirebaseAppProvider } from 'reactfire';
+import { FirebaseAppProvider } from "reactfire";
 import app from "firebase/app";
 import App from "./App/App";
 
@@ -19,12 +19,12 @@ export const firebaseConfig = {
 app.initializeApp(firebaseConfig);
 
 ReactDOM.render(
-    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-      <Suspense fallback={<h3>Loading...</h3>}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Suspense>
-    </FirebaseAppProvider>,
-    document.getElementById('root')
+  <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+    <Suspense fallback={<h3>Loading...</h3>}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Suspense>
+  </FirebaseAppProvider>,
+  document.getElementById("root")
 );
