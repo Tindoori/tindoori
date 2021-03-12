@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card, ProgressBar, Button } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
-import { storage } from "../FileUpload/FileUpload";
+import { storage } from "../Firebase/Firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const thumbsContainer = {
@@ -36,12 +36,11 @@ const img = {
   height: "100%",
 };
 
-// TODO: generiek schrijven
 export default function DragDrop() {
   const [files, setFiles] = useState([]);
-  const [imgUrl, setImgUrl] = useState("");
   const [progress, setProgress] = useState(0);
 
+  // Initialise dropzone
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -55,6 +54,7 @@ export default function DragDrop() {
     },
   });
 
+  // Creates thumbnail for all images
   const thumbs = files.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
@@ -62,14 +62,6 @@ export default function DragDrop() {
       </div>
     </div>
   ));
-
-  useEffect(
-    () => () => {
-      // Make sure to revoke the data uris to avoid memory leaks
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
-    },
-    [files]
-  );
 
   const handleUpload = () => {
     if (files.length !== 0) {
@@ -82,19 +74,8 @@ export default function DragDrop() {
           );
           setProgress(p);
         },
-        (error) => {
-          console.log(error);
-        },
         () => {
-          storage
-            .ref("meals")
-            .child(files[0].name)
-            .getDownloadURL()
-            .then((url) => {
-              // Url of the uploaded image
-              setImgUrl(url);
-              console.log(imgUrl);
-            });
+          storage.ref("meals").child(files[0].name).getDownloadURL();
         }
       );
     }
@@ -114,9 +95,15 @@ export default function DragDrop() {
               : "Drag over an image or click to select the image"}
           </Card.Text>
         )}
-        <Button onClick={handleUpload}>Upload</Button>
+        {progress === 100 ? (
+          <p>image is uploaded</p>
+        ) : (
+          <div>
+            <Button onClick={handleUpload}>Upload</Button>
+            <ProgressBar now={progress} />
+          </div>
+        )}
       </Card.Body>
-      <ProgressBar now={progress} />
     </Card>
   );
 }
