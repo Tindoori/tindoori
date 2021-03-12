@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Card } from "react-bootstrap";
+import "./RecipeCard.css";
 
 export default function RecipeCard() {
   const [recipe, setRecipe] = useState([]);
@@ -24,39 +24,17 @@ export default function RecipeCard() {
       });
   }, [fs]);
 
-  const style = {
-    card: {
-      width: "644px",
-      height: "438px",
-    },
-
-    text: {
-      maxLines: 1,
-      textOverflow: "ellipsis",
-      overflow: "hidden",
-      whiteSpace: "nowrap",
-    },
-
-    image: {
-      width: "644px",
-      height: "298px",
-    },
-  };
-
   return (
-    <Card style={style.card}>
-      <Card.Img
-        variant="top"
-        src={recipe.imgPath}
-        width={style.image.width}
-        height={style.image.height}
-      />
+    <Card className="recipe-card">
+      <Card.Img className="recipe-image" src={recipe.imgPath} />
       <Card.Body>
         <Card.Title>{recipe.name}</Card.Title>
-        <Card.Text className="description" style={style.text}>
+        <Card.Text className="recipe-description">
           {recipe.description}
         </Card.Text>
-        <Card.Text className="cook-time">{recipe.cookingTime} min</Card.Text>
+        <Card.Text className="recipe-cook-time">
+          {recipe.cookingTime} min
+        </Card.Text>
       </Card.Body>
     </Card>
   );
