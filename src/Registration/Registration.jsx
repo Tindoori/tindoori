@@ -14,10 +14,9 @@ export default function Registration() {
   });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
     // TODO bootstrap validation instead of validation below?
     if (user.password !== user.confirmPassword) {
+      e.preventDefault();
       setUser({
         ...user,
         error: "The passwords do not match!",
