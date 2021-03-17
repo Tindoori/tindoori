@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./Match.css";
 import { Button, Modal } from "react-bootstrap";
+import Card from "../Card/Card";
 
 export default function Match() {
   const [showModal, setShow] = useState(false);
@@ -13,11 +15,15 @@ export default function Match() {
       <Button variant="primary" onClick={handleShow}>
         Launch
       </Button>
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal show={showModal} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Its a match!</Modal.Title>
         </Modal.Header>
-        <Modal.Body> recipe content</Modal.Body>
+        <Modal.Body>
+          content
+          <Card />
+          <h5>The recipe will be added to your recipe overview!</h5>
+        </Modal.Body>
       </Modal>
     </>
   );
