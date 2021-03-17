@@ -1,35 +1,18 @@
-import React, { useState, useEffect } from "react";
-import firebase from "firebase/app";
+import React from "react";
 import "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card } from "react-bootstrap";
 import "./RecipeCard.css";
 import TinderCard from "react-tinder-card";
+import * as PropTypes from "prop-types";
 
-export default function RecipeCard() {
-  const [recipe, setRecipe] = useState([]);
-  const fs = firebase.firestore();
-
-  // TODO pass id of specific recipe to this class.
-  //  For now you can use "ojsxGQ2A8j4cHSvK8Pwi" or "QIhPRw1ZeNDtCnTCQVl4".
-  const recipeId = "ojsxGQ2A8j4cHSvK8Pwi";
+export default function RecipeCard({ recipe }) {
+  console.log(recipe);
 
   const onSwipe = (direction) => {
     // TODO: Replace with a call to the database
     console.log(`you swiped: ${direction}`);
   };
-
-  useEffect(() => {
-    fs.collection("recipe")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (doc.id === recipeId) {
-            setRecipe(doc.data());
-          }
-        });
-      });
-  }, [fs]);
 
   return (
     <TinderCard onSwipe={onSwipe} preventSwipe={["up", "down"]}>
@@ -48,3 +31,26 @@ export default function RecipeCard() {
     </TinderCard>
   );
 }
+
+// RecipeCard.propTypes = {
+//   recipe: PropTypes.instanceOf(Object).isRequired,
+// };
+
+RecipeCard.propTypes = {
+  recipe: {
+    allergies: PropTypes.string,
+    cookingTime: PropTypes.string,
+    cuisine: PropTypes.string,
+    description: PropTypes.string,
+    dietPreference: PropTypes.string,
+    imgPath: PropTypes.string,
+    ingredients: PropTypes.string,
+    likeAmount: PropTypes.string,
+    mealType: PropTypes.string,
+    name: PropTypes.string,
+  },
+};
+
+RecipeCard.defaultProps = {
+  recipe: {},
+};

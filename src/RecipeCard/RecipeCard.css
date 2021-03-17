@@ -15,3 +15,7 @@
     overflow: hidden;
     white-space: nowrap;
 }
+
+.card {
+    position: absolute;
+}
