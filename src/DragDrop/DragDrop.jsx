@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from "react";
 import { Card, ProgressBar, Button } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
