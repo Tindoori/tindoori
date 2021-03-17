@@ -97,6 +97,10 @@ export default function Registration() {
               required
               min={6}
             />
+            <Form.Text id="passwordHelpBlock" muted>
+              Your password must be at least 6 characters long and must not
+              contain spaces or emoji.
+            </Form.Text>
           </Form.Group>
 
           <Form.Group controlId="formConfirmPassword">
@@ -114,7 +118,7 @@ export default function Registration() {
           {createdState && (
             <Alert variant="info">You have created an account!</Alert>
           )}
-          <Button variant="danger" type="submit">
+          <Button variant="danger" type="submit" block>
             Create account
           </Button>
         </Form>

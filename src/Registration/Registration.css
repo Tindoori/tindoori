@@ -11,7 +11,7 @@
     align-items: center;
 }
 
-.form-control, button {
-    min-width: 20em;
-    max-width: 30em;
+.form-group {
+    min-width: 17em;
+    max-width: 25em;
 }
