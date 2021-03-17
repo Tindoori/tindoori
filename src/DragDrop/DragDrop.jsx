@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from "react";
-import { Card, ProgressBar, Button, Form } from "react-bootstrap";
+import { Card, ProgressBar, Button } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 import { storage } from "../Firebase/Firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -55,13 +55,8 @@ export default function DragDrop() {
   const uploadField = files.length ? (
     <aside className="thumbs-container">{thumbs}</aside>
   ) : (
-    <div>
-      <Form {...getRootProps()}>
-        <Form.File
-          label={isDragActive ? "Drop the image here" : "Drag over an image"}
-          custom
-        />
-      </Form>
+    <div {...getRootProps()} className="drop-zone">
+      {isDragActive ? "Drop the image here" : "Drag over an image"}
     </div>
   );
 
