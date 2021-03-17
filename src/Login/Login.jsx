@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useState } from "react";
 import { Redirect } from "react-router";
 import firebase from "firebase/app";
 import PropTypes from "prop-types";
+import { Button, Alert, Form } from "react-bootstrap";
 import { AuthContext } from "../Auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -34,42 +35,40 @@ const Login = ({ history }) => {
   return (
     <div className="col-md-auto">
       <h1>Tindoori</h1>
-      <form onSubmit={handleLogin}>
-        <div className="form-group">
-          <label htmlFor="email">
+      <Form onSubmit={handleLogin}>
+        <Form.Group>
+          <Form.Label>
             Email
-            <input
+            <Form.Control
               type="email"
-              className="form-control"
               id="email"
               placeholder="Enter email"
               name="email"
             />
-          </label>
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">
+          </Form.Label>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>
             Password
-            <input
+            <Form.Control
               type="password"
-              className="form-control"
               id="password"
               placeholder="Password"
               name="password"
             />
-          </label>
-        </div>
+          </Form.Label>
+        </Form.Group>
         {error && (
-          <div className="alert alert-danger" role="alert">
+          <Alert variant="danger" role="alert">
             {error.message}
-          </div>
+          </Alert>
         )}
         <div>
-          <button type="submit" className="btn btn-danger">
+          <Button type="submit" variant="danger">
             Submit
-          </button>
+          </Button>
         </div>
-      </form>
+      </Form>
     </div>
   );
 };

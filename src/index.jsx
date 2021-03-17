@@ -1,3 +1,4 @@
+/* eslint-env browser */
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import { FirebaseAppProvider } from "reactfire";
@@ -17,8 +18,7 @@ const firebaseConfig = {
 export default firebaseConfig;
 
 // Initialize Firebase
-firebase.initializeApp(config);
-
+firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <FirebaseAppProvider firebaseConfig={firebaseConfig}>
