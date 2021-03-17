@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import { FirebaseAppProvider } from "reactfire";
-import app from "firebase/app";
+import firebase from "firebase/app";
 import App from "./App/App";
 
 const firebaseConfig = {
@@ -17,7 +17,8 @@ const firebaseConfig = {
 export default firebaseConfig;
 
 // Initialize Firebase
-app.initializeApp(firebaseConfig);
+firebase.initializeApp(config);
+
 
 ReactDOM.render(
   <FirebaseAppProvider firebaseConfig={firebaseConfig}>
