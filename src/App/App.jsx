@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom"; // eslint-disable-line import/no-extraneous-dependencies
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import Login from "../Login/Login";
 import Home from "../Home/Home";

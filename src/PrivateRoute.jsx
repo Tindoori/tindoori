@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useContext } from "react";
-import { Route, Redirect } from "react-router-dom"; // eslint-disable-line import/no-extraneous-dependencies
+import { Route, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { AuthContext } from "./Auth";
 

@@ -1,6 +1,6 @@
-/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
+import PropTypes from "prop-types";
 
 export const AuthContext = React.createContext();
 
@@ -16,4 +16,8 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+AuthProvider.propTypes = {
+  children: PropTypes.func.isRequired,
 };

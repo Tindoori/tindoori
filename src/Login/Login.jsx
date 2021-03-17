@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useState } from "react";
-import { Redirect } from "react-router"; // eslint-disable-line import/no-extraneous-dependencies
+import { Redirect } from "react-router";
 import firebase from "firebase/app";
 import PropTypes from "prop-types";
 import { AuthContext } from "../Auth";
