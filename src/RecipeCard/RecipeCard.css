@@ -1,21 +1,21 @@
 .recipe-card {
-    width: 644px;
-    height: 438px;
+  width: 644px;
+  height: 438px;
 }
 
 .recipe-image {
-    variant:top;
-    width: 643px;
-    height: 298px;
+  variant: top;
+  width: 643px;
+  height: 298px;
 }
 
 .recipe-description {
-    max-lines: 1;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  max-lines: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .card {
-    position: absolute;
+  position: absolute;
 }
