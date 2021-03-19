@@ -1,4 +1,15 @@
-.modal-content {
-    background-color: transparent;
-    color: white;
+.modal-title {
+    margin: auto;
+    text-align: center;
+}
+
+.modal-header .close {
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+}
+
+.modal-body {
+    justify-content: center;
+    text-align: center;
 }
