@@ -55,16 +55,17 @@ export default function DragDrop() {
     <aside className="thumbs-container">{thumbs}</aside>
   ) : (
     <div {...getRootProps()} className="drop-zone">
-      {isDragActive ? "Drop the image here" : "Drag over an image"}
+      {isDragActive
+        ? "Drop the image here"
+        : "Click here or drag over an image"}
     </div>
   );
 
   const progressBar =
     progress === 100 ? (
-      <p>image is uploaded</p>
+      <p>Image is uploaded</p>
     ) : (
       <div>
-        <Button onClick={handleUpload}>Upload</Button>
         <ProgressBar now={progress} />
       </div>
     );
@@ -76,7 +77,13 @@ export default function DragDrop() {
         <Card.Body>
           <Card.Title>Upload image</Card.Title>
           {uploadField}
-          {progressBar}
+          <div className="foot">
+            {progress === 0 ? (
+              <Button onClick={handleUpload}>Upload</Button>
+            ) : (
+              progressBar
+            )}
+          </div>
         </Card.Body>
       </Card>
     </div>
