@@ -11,15 +11,15 @@
     "prettier"
   ],
   "rules": {
-
     "prettier/prettier": [
-
       "error",
       {
         "endOfLine": "auto"
-
       }
     ],
-    "react/jsx-props-no-spreading":"off"
+    "react/jsx-props-no-spreading": "off"
+  },
+  "env": {
+    "browser": true
   }
 }
