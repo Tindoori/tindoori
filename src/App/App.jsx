@@ -1,17 +1,18 @@
 import React from "react";
-import firebase from "firebase/app";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Login from "../Login/Login";
+import Home from "../Home/Home";
+import { AuthProvider } from "../Auth";
+import PrivateRoute from "../PrivateRoute";
 
 function App() {
-  const firebaseApp = firebase.apps[0];
-  console.log("Try and merge me");
   return (
-    <div className="App">
-      <p>Tindoori :D</p>
-      <h1>React & Firebase</h1>
-      <code>
-        <pre>{JSON.stringify(firebaseApp.options, null, 2)}</pre>
-      </code>
-    </div>
+    <AuthProvider>
+      <Router>
+        <PrivateRoute exact path="/" component={Home} />
+        <Route exact path="/Login" component={Login} />
+      </Router>
+    </AuthProvider>
   );
 }
 
