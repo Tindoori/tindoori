@@ -7,8 +7,6 @@ import TinderCard from "react-tinder-card";
 import * as PropTypes from "prop-types";
 
 export default function RecipeCard({ recipe }) {
-  console.log(recipe);
-
   const onSwipe = (direction) => {
     // TODO: Replace with a call to the database
     console.log(`you swiped: ${direction}`);
@@ -32,25 +30,6 @@ export default function RecipeCard({ recipe }) {
   );
 }
 
-// RecipeCard.propTypes = {
-//   recipe: PropTypes.instanceOf(Object).isRequired,
-// };
-
 RecipeCard.propTypes = {
-  recipe: {
-    allergies: PropTypes.string,
-    cookingTime: PropTypes.string,
-    cuisine: PropTypes.string,
-    description: PropTypes.string,
-    dietPreference: PropTypes.string,
-    imgPath: PropTypes.string,
-    ingredients: PropTypes.string,
-    likeAmount: PropTypes.string,
-    mealType: PropTypes.string,
-    name: PropTypes.string,
-  },
-};
-
-RecipeCard.defaultProps = {
-  recipe: {},
+  recipe: PropTypes.instanceOf(Object).isRequired,
 };

@@ -12,16 +12,15 @@ export default function Feed() {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
+          // Stores all recipes from database
           setRecipes((prevState) => [...prevState, doc.data()]);
         });
       });
   }, [fs]);
 
-  console.log(recipes);
-
   return (
     <div>
-      <div className="cardContrainer">
+      <div className="cardContainer">
         {recipes.map((recipe) => (
           <RecipeCard
             className="recipe-feed"
