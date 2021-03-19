@@ -18,6 +18,8 @@ export default function Feed() {
       });
   }, [fs]);
 
+  console.log(recipes);
+
   return (
     <div>
       <div className="cardContainer">
@@ -25,7 +27,7 @@ export default function Feed() {
           <RecipeCard
             className="recipe-feed"
             recipe={recipe}
-            key={recipe.name}
+            key={recipes.indexOf(recipe)}
           />
         ))}
       </div>
