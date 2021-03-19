@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, ProgressBar, Button } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
-import { storage } from "../Firebase/Firebase";
+import firebase from "firebase/app";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 
@@ -34,7 +34,10 @@ export default function DragDrop() {
 
   const handleUpload = () => {
     if (files.length !== 0) {
-      const uploadTask = storage.ref(`meals/${files[0].name}`).put(files[0]);
+      const uploadTask = firebase
+        .storage()
+        .ref(`meals/${files[0].name}`)
+        .put(files[0]);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -44,7 +47,7 @@ export default function DragDrop() {
           setProgress(p);
         },
         () => {
-          storage.ref("meals").child(files[0].name).getDownloadURL();
+          firebase.storage().ref("meals").child(files[0].name).getDownloadURL();
         }
       );
     }
