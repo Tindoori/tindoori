@@ -6,6 +6,7 @@ import RecipeCard from "../RecipeCard/RecipeCard";
 export default function Feed() {
   const fs = firebase.firestore();
   const [recipes, setRecipes] = useState([]);
+  const [ids, setIds] = useState([]);
 
   useEffect(() => {
     fs.collection("recipe")
@@ -14,6 +15,7 @@ export default function Feed() {
         querySnapshot.forEach((doc) => {
           // Stores all recipes from database
           setRecipes((prevState) => [...prevState, doc.data()]);
+          setIds((prevState) => [...prevState, doc.id]);
         });
       });
   }, [fs]);
@@ -21,11 +23,11 @@ export default function Feed() {
   return (
     <div>
       <div className="cardContainer">
-        {recipes.map((recipe) => (
+        {recipes.map((recipe, index) => (
           <RecipeCard
             className="recipe-feed"
             recipe={recipe}
-            key={recipes.indexOf(recipe)}
+            key={ids[index]}
           />
         ))}
       </div>
