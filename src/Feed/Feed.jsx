@@ -18,8 +18,6 @@ export default function Feed() {
       });
   }, [fs]);
 
-  console.log(recipes);
-
   return (
     <div>
       <div className="cardContainer">
