@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form, Nav, Navbar } from "react-bootstrap";
 import firebase from "firebase";
-// import { Redirect } from "react-router";
 import "./NavBar.css";
 import { AuthContext } from "../Auth";
 
