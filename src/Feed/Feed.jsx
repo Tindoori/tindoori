@@ -23,13 +23,15 @@ export default function Feed() {
 
   return (
     <div id="feed">
-      <div>
+      <div id="card-container">
         {recipes.map((recipe, index) => (
           <RecipeCard recipe={recipe} key={ids[index]} />
         ))}
       </div>
-      <SwipeButton action="dislike" />
-      <SwipeButton action="like" />
+      <div id="swipe-buttons-container">
+        <SwipeButton action="dislike" />
+        <SwipeButton action="like" />
+      </div>
     </div>
   );
 }
