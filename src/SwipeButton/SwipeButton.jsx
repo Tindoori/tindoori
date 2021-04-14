@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./SwipeButton.css";
 
 export default function SwipeButton({ action }) {
   function onClickHandler() {
@@ -11,9 +14,14 @@ export default function SwipeButton({ action }) {
     }
   }
   return (
-    <button type="submit" onClick={() => onClickHandler()}>
+    <Button
+      id="swipe-button"
+      variant="outline-primary"
+      type="submit"
+      onClick={() => onClickHandler()}
+    >
       {action}
-    </button>
+    </Button>
   );
 }
 
