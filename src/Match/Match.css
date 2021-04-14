@@ -1,18 +1,34 @@
-.modal-title {
+#match-modal {
+    padding-top: 2rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+}
+#match-modal-title {
     margin: auto;
     text-align: center;
 }
 
-.modal-header .close {
+#match-modal-header .close {
     padding: 0;
     margin: 0;
     justify-content: center;
+    border-bottom: transparent;
 }
 
-.modal-body {
+#match-modal-body {
     justify-content: center;
-    text-align: center;
+    overflow: scroll;
 }
-.RecipeCard {
-    text-align: justify;
+
+#match-modal-footer {
+    text-align: center;
+    padding-top: 0.8em;
+}
+#match-modal-recipe-card {
+    display: block;
+    width: 100%;
+}
+
+.img {
+    width: auto;
 }
