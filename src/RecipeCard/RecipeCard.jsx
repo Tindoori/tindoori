@@ -13,9 +13,13 @@ export default function RecipeCard({ recipe }) {
   };
 
   return (
-    <TinderCard onSwipe={onSwipe} preventSwipe={["up", "down"]}>
-      <Card className="recipe-card">
-        <Card.Img className="recipe-image" src={recipe.imgPath} />
+    <TinderCard
+      className="swipe"
+      onSwipe={onSwipe}
+      preventSwipe={["up", "down"]}
+    >
+      <Card id="recipe-card">
+        <Card.Img id="recipe-img" src={recipe.imgPath} />
         <Card.Body>
           <Card.Title>{recipe.name}</Card.Title>
           <Card.Text className="recipe-description">
