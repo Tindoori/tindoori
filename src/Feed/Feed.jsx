@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import firebase from "firebase";
 import SwipeButton from "../SwipeButton/SwipeButton";
 import RecipeCard from "../RecipeCard/RecipeCard";
+import "./Feed.css";
 
 export default function Feed() {
   const fs = firebase.firestore();
@@ -21,14 +22,10 @@ export default function Feed() {
   }, [fs]);
 
   return (
-    <div>
-      <div className="cardContainer">
+    <div id="feed">
+      <div>
         {recipes.map((recipe, index) => (
-          <RecipeCard
-            className="recipe-feed"
-            recipe={recipe}
-            key={ids[index]}
-          />
+          <RecipeCard recipe={recipe} key={ids[index]} />
         ))}
       </div>
       <SwipeButton action="dislike" />
