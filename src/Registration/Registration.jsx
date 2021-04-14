@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import firebase from "firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Registration.css";
-import { Alert, Button, Card, Container, Form } from "react-bootstrap";
+import { Alert, Button, Card, Form } from "react-bootstrap";
 
 export default function Registration() {
   const [user, setUser] = useState({
@@ -61,11 +61,11 @@ export default function Registration() {
   };
 
   return (
-    <Container fluid="md">
-      <Card>
+    <>
+      <Card id="registration-card">
         <Card.Title>Create an account</Card.Title>
         <Form className="registration-form" onSubmit={handleSubmit}>
-          <Form.Group controlId="formDisplayName">
+          <Form.Group id="registration-form-group" controlId="formDisplayName">
             <Form.Label>Full Name:</Form.Label>
             <Form.Control
               type="text"
@@ -75,7 +75,7 @@ export default function Registration() {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formEmail">
+          <Form.Group id="registration-form-group" controlId="formEmail">
             <Form.Label>Email address:</Form.Label>
             <Form.Control
               type="email"
@@ -86,7 +86,7 @@ export default function Registration() {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formPassword">
+          <Form.Group id="registration-form-group" controlId="formPassword">
             <Form.Label>Password:</Form.Label>
             <Form.Control
               type="password"
@@ -103,7 +103,10 @@ export default function Registration() {
             </Form.Text>
           </Form.Group>
 
-          <Form.Group controlId="formConfirmPassword">
+          <Form.Group
+            id="registration-form-group"
+            controlId="formConfirmPassword"
+          >
             <Form.Label>Password confirmation:</Form.Label>
             <Form.Control
               type="password"
@@ -114,15 +117,26 @@ export default function Registration() {
               min={6}
             />
           </Form.Group>
-          {user.error && <Alert variant="danger">{user.error}</Alert>}
-          {createdState && (
-            <Alert variant="info">You have created an account!</Alert>
+          {user.error && (
+            <Alert id="registration-form-alert" variant="danger">
+              {user.error}
+            </Alert>
           )}
-          <Button variant="danger" type="submit" block>
+          {createdState && (
+            <Alert id="registration-form-alert" variant="info">
+              You have created an account!
+            </Alert>
+          )}
+          <Button
+            id="registration-form-button"
+            variant="danger"
+            type="submit"
+            block
+          >
             Create account
           </Button>
         </Form>
       </Card>
-    </Container>
+    </>
   );
 }
