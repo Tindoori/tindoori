@@ -5,11 +5,32 @@ import { Card } from "react-bootstrap";
 import "./RecipeCard.css";
 import TinderCard from "react-tinder-card";
 import * as PropTypes from "prop-types";
+import firebase from "firebase";
 
 export default function RecipeCard({ recipe }) {
   const onSwipe = (direction) => {
-    // TODO: Replace with a call to the database
-    console.log(`you swiped: ${direction}`);
+    const fs = firebase.firestore();
+    const auth = firebase.auth();
+    const doc = fs
+      .collection("consumer")
+      .doc(auth.currentUser.uid)
+      .collection("recipes")
+      .doc("recipes");
+
+    switch (direction) {
+      case "right":
+        doc.update({
+          likes: firebase.firestore.FieldValue.arrayUnion(recipe.id),
+        });
+        break;
+      case "left":
+        doc.update({
+          dislikes: firebase.firestore.FieldValue.arrayUnion(recipe.id),
+        });
+        break;
+      default:
+        break;
+    }
   };
 
   return (
