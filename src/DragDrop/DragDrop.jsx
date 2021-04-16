@@ -8,6 +8,7 @@ import "./styles.css";
 export default function DragDrop() {
   const [files, setFiles] = useState([]);
   const [progress, setProgress] = useState(0);
+  const [imgPath, setImgPath] = useState("");
 
   // Initialise dropzone
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -44,6 +45,13 @@ export default function DragDrop() {
           const p = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           );
+          const imgPathValue = firebase
+            .storage()
+            .ref("meals")
+            .child(files[0].name)
+            .getDownloadURL();
+          setImgPath(imgPathValue);
+          console.log(imgPath);
           setProgress(p);
         },
         () => {

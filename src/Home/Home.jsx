@@ -2,6 +2,7 @@ import React from "react";
 import firebase from "firebase/app";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import CreateRecipe from "../CreateRecipe/CreateRecipe";
 
 const Home = () => {
   function logout() {
@@ -12,6 +13,7 @@ const Home = () => {
     <>
       <h1>Home</h1>
       <h1> hey you are logged in as : {firebase.auth().currentUser.email}</h1>
+      <CreateRecipe />
       <Button type="submit" variant="danger" onClick={logout}>
         Sign out
       </Button>
