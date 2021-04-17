@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+/* eslint-disable */
+import React, { useState, useCallback } from "react";
 import { Card, ProgressBar, Button } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 import firebase from "firebase/app";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 
-export default function DragDrop() {
+export default function DragDrop({setImgPath}) {
   const [files, setFiles] = useState([]);
   const [progress, setProgress] = useState(0);
-  const [imgPath, setImgPath] = useState("");
 
   // Initialise dropzone
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -51,7 +51,7 @@ export default function DragDrop() {
             .child(files[0].name)
             .getDownloadURL();
           setImgPath(imgPathValue);
-          console.log(imgPath);
+          console.log(imgPathValue)
           setProgress(p);
         },
         () => {
@@ -60,6 +60,8 @@ export default function DragDrop() {
       );
     }
   };
+
+
 
   // Shows upload field when nothing is uploaded. Else it shows a preview.
   const uploadField = files.length ? (

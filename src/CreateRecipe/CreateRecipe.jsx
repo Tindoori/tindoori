@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import DragDrop from "../DragDrop/DragDrop";
 import "./CreateRecipe.css";
 
 export default function CreateRecipe() {
+  const [imgPath, setImagePath] = useState();
   const handleSubmit = (event) => {
     event.preventDefault();
     const {
@@ -14,6 +15,7 @@ export default function CreateRecipe() {
     } = event.target.elements;
 
     console.log(
+      imgPath,
       recipeName.value,
       description.value,
       cookingTime.value,
@@ -28,7 +30,7 @@ export default function CreateRecipe() {
         <Form className="recipe-form" onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>Recipe image:</Form.Label>
-            <DragDrop name="recipeImage" />
+            <DragDrop handleUpload={setImagePath} />
           </Form.Group>
           <Form.Group controlId="formName" id="recipe-form-group">
             <Form.Label>Recipe name:</Form.Label>
