@@ -36,9 +36,6 @@ export default function Registration() {
         });
 
         setCreatedState(true);
-
-        // Sign user out
-        firebase.auth().signOut();
       })
       .catch((error) => {
         const errorMessage = error.message;
