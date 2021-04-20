@@ -3,8 +3,10 @@ import { Alert, Button, Card, Form } from "react-bootstrap";
 import "./CreateRecipe.css";
 import firebase from "firebase";
 import { Redirect } from "react-router";
+import DragDrop from "../DragDrop/DragDrop";
 
 export default function CreateRecipe() {
+  const [imgPathValue, setImgPathValue] = useState("");
   const [error, setError] = useState("");
   const [isValidated, setIsValidated] = useState(false);
 
@@ -22,6 +24,7 @@ export default function CreateRecipe() {
       .collection("recipe")
       .doc()
       .set({
+        imgPath: imgPathValue,
         name: recipeName.value,
         description: description.value,
         cookingTime: cookingTime.value,
@@ -31,7 +34,7 @@ export default function CreateRecipe() {
 
     setIsValidated(true);
     console.log(
-      // imgPath,
+      imgPathValue,
       recipeName.value,
       description.value,
       cookingTime.value,
@@ -43,6 +46,10 @@ export default function CreateRecipe() {
     return <Redirect to="/" />;
   }
 
+  const onChange = (data) => {
+    setImgPathValue(data);
+  };
+
   return (
     <>
       <Card id="create-recipe-card">
@@ -50,7 +57,12 @@ export default function CreateRecipe() {
         <Form className="recipe-form" onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>Recipe image:</Form.Label>
-            {/* <DragDrop handleUpload={setImagePath} /> */}
+            <DragDrop
+              data={imgPathValue}
+              onChange={(e) => {
+                onChange(e);
+              }}
+            />
           </Form.Group>
           <Form.Group controlId="formName" id="recipe-form-group">
             <Form.Label>Recipe name:</Form.Label>

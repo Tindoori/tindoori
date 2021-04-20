@@ -1,12 +1,12 @@
-/* eslint-disable */
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { Card, ProgressBar, Button } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 import firebase from "firebase/app";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
+import PropTypes from "prop-types";
 
-export default function DragDrop({setImgPath}) {
+export default function DragDrop(props) {
   const [files, setFiles] = useState([]);
   const [progress, setProgress] = useState(0);
 
@@ -45,13 +45,15 @@ export default function DragDrop({setImgPath}) {
           const p = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           );
-          const imgPathValue = firebase
+          firebase
             .storage()
             .ref("meals")
             .child(files[0].name)
-            .getDownloadURL();
-          setImgPath(imgPathValue);
-          console.log(imgPathValue)
+            .getDownloadURL()
+            .then((url) => {
+              props.onChange(url);
+              console.log(" URL ", url);
+            });
           setProgress(p);
         },
         () => {
@@ -60,8 +62,6 @@ export default function DragDrop({setImgPath}) {
       );
     }
   };
-
-
 
   // Shows upload field when nothing is uploaded. Else it shows a preview.
   const uploadField = files.length ? (
@@ -82,7 +82,6 @@ export default function DragDrop({setImgPath}) {
         <ProgressBar now={progress} />
       </div>
     );
-
   return (
     <div>
       <Card className="card">
@@ -102,3 +101,7 @@ export default function DragDrop({setImgPath}) {
     </div>
   );
 }
+DragDrop.propTypes = {
+  data: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
