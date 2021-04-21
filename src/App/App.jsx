@@ -4,7 +4,6 @@ import Login from "../Login/Login";
 import Home from "../Home/Home";
 import { AuthProvider } from "../Auth";
 import PrivateRoute from "../PrivateRoute";
-import Feed from "../Feed/Feed";
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
       <Router>
         <PrivateRoute exact path="/" component={Home} />
         <Route exact path="/Login" component={Login} />
-        <PrivateRoute exact path="/feed" component={Feed} />
       </Router>
     </AuthProvider>
   );
