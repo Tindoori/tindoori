@@ -3,7 +3,7 @@
     height: 100%;
 }
 
-.card {
+.recipe-card {
     padding: 3em;
     position: fixed;
     max-width: 40em;
