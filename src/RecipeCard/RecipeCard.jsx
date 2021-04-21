@@ -36,7 +36,7 @@ export default function RecipeCard({ recipe }) {
   return (
     <TinderCard
       className="swipe"
-      onSwipe={onSwipe}
+      onSwipe={(dir) => onSwipe(dir, recipe)}
       preventSwipe={["up", "down"]}
     >
       <Card id="recipe-card">
