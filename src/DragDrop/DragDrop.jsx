@@ -52,7 +52,6 @@ export default function DragDrop(props) {
             .getDownloadURL()
             .then((url) => {
               props.onChange(url);
-              console.log(" URL ", url);
             });
           setProgress(p);
         },
