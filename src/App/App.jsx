@@ -12,7 +12,7 @@ function App() {
     <AuthProvider>
       <Router>
         <PrivateRoute exact path="/" component={Home} />
-        <PrivateRoute exact path="/add-recipe" component={CreateRecipe} />
+        <Route exact path="/add-recipe" component={CreateRecipe} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/registration" component={Registration} />
       </Router>
