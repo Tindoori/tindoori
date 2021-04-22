@@ -35,6 +35,22 @@ export default function Registration() {
           displayName: user.displayName,
         });
 
+        // Provide consumer role
+        firebase
+          .firestore()
+          .collection("consumer")
+          .doc(userCredential.user.uid)
+          .set({ role: 1 });
+
+        // Prepare user recipes collection
+        firebase
+          .firestore()
+          .collection("consumer")
+          .doc(userCredential.user.uid)
+          .collection("recipes")
+          .doc("recipes")
+          .set({});
+
         setCreatedState(true);
       })
       .catch((error) => {

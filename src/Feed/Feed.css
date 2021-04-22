@@ -1,0 +1,17 @@
+#feed {
+  margin: auto;
+  margin-top: 50px;
+  width: 80%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+#swipe-buttons-container {
+  margin-top: 425px;
+}
+
+/* Gives the last card on the pile a drop shadow*/
+#card-container > :first-child > #recipe-card {
+  box-shadow: 0px 0px 10px lightgray;
+}
