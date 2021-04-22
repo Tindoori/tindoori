@@ -1,0 +1,10 @@
+#create-recipe-card {
+    padding: 2.5rem;
+    margin: 1.3rem;
+    align-items: center;
+}
+
+#recipe-form-group, #recipe-form-button {
+    min-width: 17em;
+    max-width: 25em;
+}

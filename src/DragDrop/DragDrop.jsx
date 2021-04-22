@@ -4,8 +4,9 @@ import { useDropzone } from "react-dropzone";
 import firebase from "firebase/app";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
+import PropTypes from "prop-types";
 
-export default function DragDrop() {
+export default function DragDrop(props) {
   const [files, setFiles] = useState([]);
   const [progress, setProgress] = useState(0);
 
@@ -44,6 +45,14 @@ export default function DragDrop() {
           const p = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           );
+          firebase
+            .storage()
+            .ref("meals")
+            .child(files[0].name)
+            .getDownloadURL()
+            .then((url) => {
+              props.onChange(url);
+            });
           setProgress(p);
         },
         () => {
@@ -72,7 +81,6 @@ export default function DragDrop() {
         <ProgressBar now={progress} />
       </div>
     );
-
   return (
     <div>
       <Card className="card">
@@ -92,3 +100,7 @@ export default function DragDrop() {
     </div>
   );
 }
+DragDrop.propTypes = {
+  data: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
