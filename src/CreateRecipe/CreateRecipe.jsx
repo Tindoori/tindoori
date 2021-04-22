@@ -19,11 +19,10 @@ export default function CreateRecipe() {
       ingredients,
     } = event.target.elements;
 
-    firebase
-      .firestore()
-      .collection("recipe")
-      .doc()
+    const ref = firebase.firestore().collection("recipe").doc();
+    ref
       .set({
+        id: ref.id,
         imgPath: imgPathValue,
         name: recipeName.value,
         description: description.value,
