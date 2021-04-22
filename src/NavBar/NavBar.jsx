@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form, Nav, Navbar } from "react-bootstrap";
 import firebase from "firebase";
 import "./NavBar.css";
-import { AuthContext } from "../Auth";
 
-export default function Registration() {
-  const { currentUser } = useContext(AuthContext);
-
+export default function NavBar() {
   function logout() {
     firebase.auth().signOut();
   }
@@ -29,10 +26,6 @@ export default function Registration() {
               >
                 Log out
               </Button>
-              {/* TODO change link to profile link when component is created */}
-              <Navbar.Text>
-                Signed in as: <a href="/">{currentUser.email}</a>
-              </Navbar.Text>
             </Form>
           </Nav>
         </Navbar.Collapse>
