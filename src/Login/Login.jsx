@@ -66,7 +66,7 @@ const Login = ({ history }) => {
           )}
           <div id="#registration-form-button ">
             <Button type="submit" variant="danger">
-              Submit
+              Login
             </Button>
           </div>
         </Form>
