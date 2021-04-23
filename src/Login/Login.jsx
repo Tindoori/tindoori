@@ -2,7 +2,8 @@ import React, { useCallback, useContext, useState } from "react";
 import { Redirect } from "react-router";
 import firebase from "firebase/app";
 import PropTypes from "prop-types";
-import { Button, Alert, Form } from "react-bootstrap";
+import { Button, Alert, Form, Card } from "react-bootstrap";
+import logo from "../images/logo.png";
 import { AuthContext } from "../Auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -33,43 +34,50 @@ const Login = ({ history }) => {
   }
 
   return (
-    <div className="col-md-auto">
-      <h1>Tindoori</h1>
-      <Form onSubmit={handleLogin}>
-        <Form.Group>
-          <Form.Label>
-            Email
-            <Form.Control
-              type="email"
-              id="email"
-              placeholder="Enter email"
-              name="email"
-            />
-          </Form.Label>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>
-            Password
-            <Form.Control
-              type="password"
-              id="password"
-              placeholder="Password"
-              name="password"
-            />
-          </Form.Label>
-        </Form.Group>
-        {error && (
-          <Alert variant="danger" role="alert">
-            {error.message}
-          </Alert>
-        )}
+    <Card id="registration-card">
+      <div id="feed">
+        <img src={logo} alt="Cannot load " />
+        <h1>Tindoori</h1>
+        <Form onSubmit={handleLogin}>
+          <Form.Group id="registration-form-group">
+            <Form.Label>
+              Email
+              <Form.Control
+                type="email"
+                id="email"
+                placeholder="Enter email"
+                name="email"
+              />
+            </Form.Label>
+          </Form.Group>
+          <Form.Group id="registration-form-group">
+            <Form.Label>
+              Password
+              <Form.Control
+                type="password"
+                id="password"
+                placeholder="Password"
+                name="password"
+              />
+            </Form.Label>
+          </Form.Group>
+          {error && (
+            <Alert variant="danger" role="alert">
+              {error.message}
+            </Alert>
+          )}
+          <div id="#registration-form-button ">
+            <Button type="submit" variant="danger">
+              Login
+            </Button>
+          </div>
+        </Form>
+        <br />
         <div>
-          <Button type="submit" variant="danger">
-            Submit
-          </Button>
+          <a href="/registration">Sign up</a>
         </div>
-      </Form>
-    </div>
+      </div>
+    </Card>
   );
 };
 
