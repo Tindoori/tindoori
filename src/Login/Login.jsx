@@ -3,6 +3,7 @@ import { Redirect } from "react-router";
 import firebase from "firebase/app";
 import PropTypes from "prop-types";
 import { Button, Alert, Form, Card } from "react-bootstrap";
+import logo from "../images/logo.png";
 import { AuthContext } from "../Auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -35,9 +36,10 @@ const Login = ({ history }) => {
   return (
     <Card id="registration-card">
       <div id="feed">
+        <img src={logo} alt="Cannot load " />
         <h1>Tindoori</h1>
         <Form onSubmit={handleLogin}>
-          <Form.Group>
+          <Form.Group id="registration-form-group">
             <Form.Label>
               Email
               <Form.Control
@@ -48,7 +50,7 @@ const Login = ({ history }) => {
               />
             </Form.Label>
           </Form.Group>
-          <Form.Group>
+          <Form.Group id="registration-form-group">
             <Form.Label>
               Password
               <Form.Control
@@ -72,11 +74,7 @@ const Login = ({ history }) => {
         </Form>
         <br />
         <div>
-          <a href="/registration">
-            <Button type="submit" variant="primary">
-              Registration
-            </Button>
-          </a>
+          <a href="/registration">Sign up</a>
         </div>
       </div>
     </Card>
