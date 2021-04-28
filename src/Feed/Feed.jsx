@@ -30,12 +30,13 @@ export default function Feed() {
     fetchConsumerData().then(() =>
       fs
         .collection("recipe")
-        .where("id", "not-in", recipesToFilter)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            // Stores all recipes from database
-            setRecipes((prevState) => [...prevState, doc.data()]);
+            // Filter liked/disliked recipes
+            if (!recipesToFilter.includes(doc.id)) {
+              setRecipes((prevState) => [...prevState, doc.data()]);
+            }
           });
         })
     );
