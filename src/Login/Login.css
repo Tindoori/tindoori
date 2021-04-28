@@ -1,0 +1,19 @@
+#login_card {
+    padding: 2.5rem;
+    margin: 1.3rem;
+    align-items: center;
+}
+
+#login_card_items {
+    margin: auto;
+    margin-top: 50px;
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form-group, #login-form-button {
+    min-width: 17em;
+    max-width: 25em;
+}
