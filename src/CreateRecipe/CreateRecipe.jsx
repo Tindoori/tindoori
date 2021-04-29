@@ -20,6 +20,7 @@ export default function CreateRecipe() {
     } = event.target.elements;
 
     const ref = firebase.firestore().collection("recipe").doc();
+    const userUid = firebase.auth().currentUser.uid;
     ref
       .set({
         id: ref.id,
@@ -28,6 +29,7 @@ export default function CreateRecipe() {
         description: description.value,
         cookingTime: cookingTime.value,
         ingredients: ingredients.value,
+        createdBy: userUid,
       })
       .catch((e) => setError(e));
 
