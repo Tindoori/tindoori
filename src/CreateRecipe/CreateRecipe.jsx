@@ -4,11 +4,16 @@ import "./CreateRecipe.css";
 import firebase from "firebase";
 import { Redirect } from "react-router";
 import DragDrop from "../DragDrop/DragDrop";
+// import CustomDropdown from "../CustomDropdown/CustomDropdown";
 
 export default function CreateRecipe() {
   const [imgPathValue, setImgPathValue] = useState("");
   const [error, setError] = useState("");
   const [isValidated, setIsValidated] = useState(false);
+  // const [allergies, setAllergies] = useState([]);
+  // const [dietary, setDietary] = useState([]);
+
+  const fs = firebase.firestore();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,19 +22,21 @@ export default function CreateRecipe() {
       description,
       cookingTime,
       ingredients,
+      allergy,
+      diet,
     } = event.target.elements;
 
-    const ref = firebase.firestore().collection("recipe").doc();
-    ref
-      .set({
-        id: ref.id,
-        imgPath: imgPathValue,
-        name: recipeName.value,
-        description: description.value,
-        cookingTime: cookingTime.value,
-        ingredients: ingredients.value,
-      })
-      .catch((e) => setError(e));
+    fs.collection("recipe").doc();
+    fs.set({
+      id: fs.id,
+      imgPath: imgPathValue,
+      name: recipeName.value,
+      description: description.value,
+      cookingTime: cookingTime.value,
+      ingredients: ingredients.value,
+      allergy: allergy.value,
+      diet: diet.value,
+    }).catch((e) => setError(e));
 
     setIsValidated(true);
   };
@@ -90,6 +97,10 @@ export default function CreateRecipe() {
             name="ingredients"
             required
           />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Dietary information:</Form.Label>
+          {/* <CustomDropdown /> */}
         </Form.Group>
         {error && (
           <Alert variant="danger" role="alert">
