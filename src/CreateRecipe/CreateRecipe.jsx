@@ -7,6 +7,7 @@ import DragDrop from "../DragDrop/DragDrop";
 
 export default function CreateRecipe() {
   const [imgPathValue, setImgPathValue] = useState("");
+  const [mealType, setMealType] = useState("");
   const [error, setError] = useState("");
   const [isValidated, setIsValidated] = useState(false);
 
@@ -28,6 +29,7 @@ export default function CreateRecipe() {
         description: description.value,
         cookingTime: cookingTime.value,
         ingredients: ingredients.value,
+        mealtype: mealType,
       })
       .catch((e) => setError(e));
 
@@ -40,6 +42,9 @@ export default function CreateRecipe() {
 
   const onChange = (data) => {
     setImgPathValue(data);
+  };
+  const onMealTypeChange = (e) => {
+    setMealType(e.target.value);
   };
 
   return (
@@ -90,6 +95,21 @@ export default function CreateRecipe() {
             name="ingredients"
             required
           />
+          <Form.Group
+            controlId="formSelectMealType"
+            id="select-mealtype-form-group"
+            name="mealType"
+            onChange={onMealTypeChange}
+            required
+          >
+            <Form.Label>Select A Mealtype</Form.Label>
+            <Form.Control as="select">
+              <option>Breakfast</option>
+              <option>Lunch</option>
+              <option>Diner</option>
+              <option>Snack</option>
+            </Form.Control>
+          </Form.Group>
         </Form.Group>
         {error && (
           <Alert variant="danger" role="alert">
