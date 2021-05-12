@@ -20,6 +20,7 @@ export default function CreateRecipe() {
 
   const fs = firebase.firestore();
 
+  // Get preferences from fs
   useEffect(() => {
     fs.collection("preference")
       .doc("preference")
@@ -38,9 +39,11 @@ export default function CreateRecipe() {
           <Form.Label>Dietary information:</Form.Label>
           {keys.map((key, i) => {
             return (
-              <DropdownButton id="dropdown-basic-button" title={key}>
+              <DropdownButton key={`dropdown-${key}`} title={key}>
                 {values[i].map((value) => (
-                  <Dropdown.Item href="#/action-1">{value}</Dropdown.Item>
+                  <Dropdown.Item key={`dropdown-item-${value}`}>
+                    {value}
+                  </Dropdown.Item>
                 ))}
               </DropdownButton>
             );
@@ -58,8 +61,6 @@ export default function CreateRecipe() {
       description,
       cookingTime,
       ingredients,
-      allergy,
-      diet,
     } = event.target.elements;
 
     fs.collection("recipe").doc();
@@ -70,8 +71,6 @@ export default function CreateRecipe() {
       description: description.value,
       cookingTime: cookingTime.value,
       ingredients: ingredients.value,
-      allergy: allergy.value,
-      diet: diet.value,
     }).catch((e) => setError(e));
 
     setIsValidated(true);
