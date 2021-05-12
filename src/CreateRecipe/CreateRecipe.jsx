@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert, Button, Card, Form } from "react-bootstrap";
 import "./CreateRecipe.css";
 import firebase from "firebase";
 import { Redirect } from "react-router";
 import DragDrop from "../DragDrop/DragDrop";
-// import CustomDropdown from "../CustomDropdown/CustomDropdown";
 
 export default function CreateRecipe() {
   const [imgPathValue, setImgPathValue] = useState("");
   const [error, setError] = useState("");
   const [isValidated, setIsValidated] = useState(false);
-  // const [allergies, setAllergies] = useState([]);
-  // const [dietary, setDietary] = useState([]);
+  const [lists, setLists] = useState();
 
   const fs = firebase.firestore();
+
+  useEffect(() => {
+    fs.collection("preference")
+      .doc("preference")
+      .get()
+      .then((snapshot) => {
+        setLists(snapshot.data());
+      });
+  }, [fs]);
+
+  console.log(lists);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -97,10 +106,6 @@ export default function CreateRecipe() {
             name="ingredients"
             required
           />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Dietary information:</Form.Label>
-          {/* <CustomDropdown /> */}
         </Form.Group>
         {error && (
           <Alert variant="danger" role="alert">
