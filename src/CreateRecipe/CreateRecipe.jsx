@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Alert, Button, Card, Form } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Card,
+  Form,
+  Dropdown,
+  DropdownButton,
+} from "react-bootstrap";
 import "./CreateRecipe.css";
 import firebase from "firebase";
 import { Redirect } from "react-router";
@@ -22,7 +29,27 @@ export default function CreateRecipe() {
       });
   }, [fs]);
 
-  console.log(lists);
+  const createDropdown = () => {
+    if (lists) {
+      const keys = Object.keys(lists);
+      const values = Object.values(lists);
+      return (
+        <Form.Group>
+          <Form.Label>Dietary information:</Form.Label>
+          {keys.map((key, i) => {
+            return (
+              <DropdownButton id="dropdown-basic-button" title={key}>
+                {values[i].map((value) => (
+                  <Dropdown.Item href="#/action-1">{value}</Dropdown.Item>
+                ))}
+              </DropdownButton>
+            );
+          })}
+        </Form.Group>
+      );
+    }
+    return null;
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -107,6 +134,7 @@ export default function CreateRecipe() {
             required
           />
         </Form.Group>
+        {createDropdown()}
         {error && (
           <Alert variant="danger" role="alert">
             {error.message}
