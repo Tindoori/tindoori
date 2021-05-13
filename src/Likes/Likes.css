@@ -1,8 +1,12 @@
-#liked-recipes-list {
-    margin: auto;
-    margin-top: 50px;
-    width: 80%;
-    max-width: 500px;
-    /*display: flex;*/
-    /*flex-direction: column;*/
+#liked-recipe-list {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+#liked-recipe-card {
+  margin-left: 15px;
+  margin-top: 50px;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
 }
