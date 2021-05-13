@@ -116,7 +116,7 @@ export default function CreateRecipe() {
           {preferences &&
             Object.keys(preferences).map((preference, i) => {
               return (
-                <Col>
+                <Col key={`${preference}-column`}>
                   <Form.Label>
                     {preference.charAt(0).toUpperCase() + preference.slice(1)}
                   </Form.Label>
