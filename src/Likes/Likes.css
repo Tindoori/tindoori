@@ -1,0 +1,8 @@
+#liked-recipes-list {
+    margin: auto;
+    margin-top: 50px;
+    width: 80%;
+    max-width: 500px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
