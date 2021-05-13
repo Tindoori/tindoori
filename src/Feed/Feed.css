@@ -1,6 +1,6 @@
 #feed {
   margin: auto;
-  margin-top: 50px;
+  margin-top: 35px;
   width: 80%;
   max-width: 500px;
   display: flex;
@@ -14,4 +14,15 @@
 /* Gives the last card on the pile a drop shadow*/
 #card-container > :first-child > #recipe-card {
   box-shadow: 0px 0px 10px lightgray;
+}
+
+#preferences-allergies-dropdown-item:hover {
+  background-color: #FFF2F2;
+}
+#preferences-allergies-dropdown-item.selected {
+  background-color: #FFDEDE;
+}
+
+#preferences-allergies-dropdown{
+  margin: 0.5em;
 }
