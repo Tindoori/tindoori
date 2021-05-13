@@ -33,6 +33,7 @@ export default function CreateRecipe() {
       ingredients,
       allergy,
       dietary,
+      mealtype,
     } = event.target.elements;
 
     const ref = fs.collection("recipe").doc();
@@ -46,6 +47,7 @@ export default function CreateRecipe() {
         ingredients: ingredients.value,
         allergy: allergy.value,
         dietary: dietary.value,
+        mealtype: mealtype.value,
       })
       .catch((e) => setError(e));
 
