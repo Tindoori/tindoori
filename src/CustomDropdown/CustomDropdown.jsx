@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { DropdownButton, Dropdown } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 /**
  * Creates dropdowns with data provides.
@@ -11,14 +11,12 @@ import { DropdownButton, Dropdown } from "react-bootstrap";
 export default function CustomDropdown({ name, values }) {
   // For the keys, all the spaces are replaces with dashes.
   return (
-    <DropdownButton title={name}>
+    <Form.Control as="select" defaultValue={name} name={name}>
       {Object.values(values).map((value) => (
-        <Dropdown.Item
-          key={`${name}-dropdown-item-${value.replace(/\s+/g, "-")}`}
-        >
+        <option key={`${name}-dropdown-item-${value.replace(/\s+/g, "-")}`}>
           {value}
-        </Dropdown.Item>
+        </option>
       ))}
-    </DropdownButton>
+    </Form.Control>
   );
 }
