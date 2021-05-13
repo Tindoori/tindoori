@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  Alert,
-  Button,
-  Card,
-  Form,
-  Dropdown,
-  DropdownButton,
-} from "react-bootstrap";
+import { Alert, Button, Card, Form } from "react-bootstrap";
 import "./CreateRecipe.css";
 import firebase from "firebase";
 import { Redirect } from "react-router";
 import DragDrop from "../DragDrop/DragDrop";
+import CustomDropdown from "../CustomDropdown/CustomDropdown";
 
 export default function CreateRecipe() {
   const [imgPathValue, setImgPathValue] = useState("");
@@ -30,26 +24,11 @@ export default function CreateRecipe() {
       });
   }, [fs]);
 
-  const createDropdown = () => {
+  const generateDropdown = () => {
     if (lists) {
       const keys = Object.keys(lists);
       const values = Object.values(lists);
-      return (
-        <Form.Group>
-          <Form.Label>Dietary information:</Form.Label>
-          {keys.map((key, i) => {
-            return (
-              <DropdownButton key={`dropdown-${key}`} title={key}>
-                {values[i].map((value) => (
-                  <Dropdown.Item key={`dropdown-item-${value}`}>
-                    {value}
-                  </Dropdown.Item>
-                ))}
-              </DropdownButton>
-            );
-          })}
-        </Form.Group>
-      );
+      return <CustomDropdown keys={keys} values={values} />;
     }
     return null;
   };
@@ -133,7 +112,10 @@ export default function CreateRecipe() {
             required
           />
         </Form.Group>
-        {createDropdown()}
+        <Form.Group>
+          <Form.Label>Dietary information:</Form.Label>
+          {generateDropdown()}
+        </Form.Group>
         {error && (
           <Alert variant="danger" role="alert">
             {error.message}
