@@ -111,11 +111,14 @@ export default function CreateRecipe() {
         </Form.Group>
         <Form.Group>
           <Form.Label>Dietary information:</Form.Label>
-          <Form.Row>
+          <Form>
             {preferences &&
               Object.keys(preferences).map((preference, i) => {
                 return (
                   <Col>
+                    <Form.Label>
+                      {preference.charAt(0).toUpperCase() + preference.slice(1)}
+                    </Form.Label>
                     <FormDropdown
                       name={preference}
                       values={Object.values(preferences)[i]}
@@ -123,7 +126,7 @@ export default function CreateRecipe() {
                   </Col>
                 );
               })}
-          </Form.Row>
+          </Form>
         </Form.Group>
         {error && (
           <Alert variant="danger" role="alert">
