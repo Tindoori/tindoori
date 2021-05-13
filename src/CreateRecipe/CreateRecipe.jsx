@@ -113,22 +113,20 @@ export default function CreateRecipe() {
         </Form.Group>
         <Form.Group>
           <Form.Label>Dietary information:</Form.Label>
-          <Form>
-            {preferences &&
-              Object.keys(preferences).map((preference, i) => {
-                return (
-                  <Col>
-                    <Form.Label>
-                      {preference.charAt(0).toUpperCase() + preference.slice(1)}
-                    </Form.Label>
-                    <FormDropdown
-                      name={preference}
-                      values={Object.values(preferences)[i]}
-                    />
-                  </Col>
-                );
-              })}
-          </Form>
+          {preferences &&
+            Object.keys(preferences).map((preference, i) => {
+              return (
+                <Col>
+                  <Form.Label>
+                    {preference.charAt(0).toUpperCase() + preference.slice(1)}
+                  </Form.Label>
+                  <FormDropdown
+                    name={preference}
+                    values={Object.values(preferences)[i]}
+                  />
+                </Col>
+              );
+            })}
         </Form.Group>
         {error && (
           <Alert variant="danger" role="alert">
