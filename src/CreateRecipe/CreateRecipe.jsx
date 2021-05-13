@@ -4,7 +4,7 @@ import "./CreateRecipe.css";
 import firebase from "firebase";
 import { Redirect } from "react-router";
 import DragDrop from "../DragDrop/DragDrop";
-import CustomDropdown from "../CustomDropdown/CustomDropdown";
+import FormDropdown from "../FormDropdown/FormDropdown";
 
 export default function CreateRecipe() {
   const [imgPathValue, setImgPathValue] = useState("");
@@ -31,17 +31,23 @@ export default function CreateRecipe() {
       description,
       cookingTime,
       ingredients,
+      allergy,
+      dietary,
     } = event.target.elements;
 
-    fs.collection("recipe").doc();
-    fs.set({
-      id: fs.id,
-      imgPath: imgPathValue,
-      name: recipeName.value,
-      description: description.value,
-      cookingTime: cookingTime.value,
-      ingredients: ingredients.value,
-    }).catch((e) => setError(e));
+    const ref = fs.collection("recipe").doc();
+    ref
+      .set({
+        id: ref.id,
+        imgPath: imgPathValue,
+        name: recipeName.value,
+        description: description.value,
+        cookingTime: cookingTime.value,
+        ingredients: ingredients.value,
+        allergy: allergy.value,
+        dietary: dietary.value,
+      })
+      .catch((e) => setError(e));
 
     setIsValidated(true);
   };
@@ -110,7 +116,7 @@ export default function CreateRecipe() {
               Object.keys(preferences).map((preference, i) => {
                 return (
                   <Col>
-                    <CustomDropdown
+                    <FormDropdown
                       name={preference}
                       values={Object.values(preferences)[i]}
                     />
