@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import { Form } from "react-bootstrap";
+import { PropTypes } from "prop-types";
 
 /**
  * Creates dropdowns with data provides.
@@ -22,3 +22,8 @@ export default function FormDropdown({ name, values }) {
     </Form.Control>
   );
 }
+
+FormDropdown.propTypes = {
+  name: PropTypes.string.isRequired,
+  values: PropTypes.arrayOf.Proptypes.string.isRequired,
+};
