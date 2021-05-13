@@ -25,5 +25,5 @@ export default function FormDropdown({ name, values }) {
 
 FormDropdown.propTypes = {
   name: PropTypes.string.isRequired,
-  values: PropTypes.arrayOf.Proptypes.string.isRequired,
+  values: PropTypes.instanceOf(Array).isRequired,
 };
