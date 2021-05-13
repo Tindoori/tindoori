@@ -5,14 +5,13 @@ import "./Likes.css";
 import firebase from "firebase";
 import NavBar from "../NavBar/NavBar";
 
-//  TODO make route private
 export default function Likes() {
   const fs = firebase.firestore();
   const auth = firebase.auth();
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    let likedRecipes = [];
+    let likedRecipes;
 
     async function fetchLikesData() {
       await fs
@@ -22,8 +21,9 @@ export default function Likes() {
         .doc("recipes")
         .get()
         .then((snapshot) => {
-          //    TODO fix bug where no likes causes error
-          likedRecipes = snapshot.data().likes;
+          if (snapshot.data().likes !== null) {
+            likedRecipes = snapshot.data().likes;
+          }
         });
     }
 
@@ -32,25 +32,23 @@ export default function Likes() {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            if (likedRecipes.length !== 0) {
-              // Filter liked recipes
-              if (likedRecipes.includes(doc.id)) {
-                setRecipes((prevState) => [...prevState, doc.data()]);
-              }
+            if (likedRecipes == null) likedRecipes = [""];
+
+            // Filter liked recipes
+            if (likedRecipes.includes(doc.id)) {
+              setRecipes((prevState) => [...prevState, doc.data()]);
             }
           });
         });
     });
   }, [fs, auth.currentUser.uid]);
 
-  console.log(recipes);
-
   return (
     <>
       <NavBar />
       <ListGroup id="liked-recipe-list">
         {recipes.map((recipe) => (
-          <Card id="liked-recipe-card">
+          <Card id="liked-recipe-card" key={recipe.id}>
             <Card.Img id="recipe-img" src={recipe.imgPath} />
             <Card.Body>
               <Card.Title>{recipe.name}</Card.Title>
