@@ -10,7 +10,7 @@ export default function CreateRecipe() {
   const [imgPathValue, setImgPathValue] = useState("");
   const [error, setError] = useState("");
   const [isValidated, setIsValidated] = useState(false);
-  const [lists, setLists] = useState();
+  const [preferences, setPreferences] = useState();
 
   const fs = firebase.firestore();
 
@@ -20,18 +20,9 @@ export default function CreateRecipe() {
       .doc("preference")
       .get()
       .then((snapshot) => {
-        setLists(snapshot.data());
+        setPreferences(snapshot.data());
       });
   }, [fs]);
-
-  const generateDropdown = () => {
-    if (lists) {
-      const keys = Object.keys(lists);
-      const values = Object.values(lists);
-      return <CustomDropdown keys={keys} values={values} />;
-    }
-    return null;
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -114,7 +105,12 @@ export default function CreateRecipe() {
         </Form.Group>
         <Form.Group>
           <Form.Label>Dietary information:</Form.Label>
-          {generateDropdown()}
+          {preferences && (
+            <CustomDropdown
+              keys={Object.keys(preferences)}
+              values={Object.values(preferences)}
+            />
+          )}
         </Form.Group>
         {error && (
           <Alert variant="danger" role="alert">
