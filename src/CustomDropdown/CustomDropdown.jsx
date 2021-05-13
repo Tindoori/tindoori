@@ -1,20 +1,24 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 
 /**
  * Creates dropdowns with data provides.
- * @param   {array} keys    The name(s) of the dropdown(s).
- * @param   {array} values  The values for the options.
- * @return  {<type>}        Returns a dropdown menu with options.
+ * @param   {string} name    The name of the dropdown.
+ * @param   {array} values  The values for the options within the dropdown.
+ * @return  {<DropdownButton>}        Returns a dropdown menu with options.
  */
-export default function CustomDropdown({ keys, values }) {
-  return Object.values(keys).map((key, i) => {
-    return (
-      <DropdownButton key={`dropdown-${key}`} title={key}>
-        {Object.values(values[i]).map((value) => (
-          <Dropdown.Item key={`dropdown-item-${value}`}>{value}</Dropdown.Item>
-        ))}
-      </DropdownButton>
-    );
-  });
+export default function CustomDropdown({ name, values }) {
+  // For the keys, all the spaces are replaces with dashes.
+  return (
+    <DropdownButton title={name}>
+      {Object.values(values).map((value) => (
+        <Dropdown.Item
+          key={`${name}-dropdown-item-${value.replace(/\s+/g, "-")}`}
+        >
+          {value}
+        </Dropdown.Item>
+      ))}
+    </DropdownButton>
+  );
 }

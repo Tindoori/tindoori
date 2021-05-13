@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Alert, Button, Card, Form } from "react-bootstrap";
+import { Alert, Button, Card, Form, Col } from "react-bootstrap";
 import "./CreateRecipe.css";
 import firebase from "firebase";
 import { Redirect } from "react-router";
@@ -105,12 +105,19 @@ export default function CreateRecipe() {
         </Form.Group>
         <Form.Group>
           <Form.Label>Dietary information:</Form.Label>
-          {preferences && (
-            <CustomDropdown
-              keys={Object.keys(preferences)}
-              values={Object.values(preferences)}
-            />
-          )}
+          <Form.Row>
+            {preferences &&
+              Object.keys(preferences).map((preference, i) => {
+                return (
+                  <Col>
+                    <CustomDropdown
+                      name={preference}
+                      values={Object.values(preferences)[i]}
+                    />
+                  </Col>
+                );
+              })}
+          </Form.Row>
         </Form.Group>
         {error && (
           <Alert variant="danger" role="alert">
