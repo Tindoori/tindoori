@@ -84,10 +84,10 @@ export default function CreateRecipe() {
           />
         </Form.Group>
         <Form.Group controlId="formCookingTime" id="recipe-form-group">
-          <Form.Label>Cooking time:</Form.Label>
+          <Form.Label>Cooking time in minutes:</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="E.g: 30 minutes"
+            type="number"
+            placeholder="E.g: 30"
             name="cookingTime"
             required
           />
