@@ -8,15 +8,19 @@ export default function Feed() {
   const fs = firebase.firestore();
   const auth = firebase.auth();
   const [recipes, setRecipes] = useState([]);
-  const [allergies] = useState([
-    { label: "Sea food", value: "sea-food" },
-    { label: "Nuts", value: "nuts" },
-    { label: "Dairy", value: "dairy" },
-  ]);
-  const [selected, setSelected] = useState("nuts");
+  const [allergies, setAllergies] = useState([]);
+  const [selected, setSelected] = useState("");
 
   useEffect(() => {
     let recipesToFilter = [""];
+
+    fs.collection("preference")
+      .doc("preference")
+      .get()
+      .then((docSnapshot) => {
+        const allergiesData = docSnapshot.get("allergy");
+        setAllergies(allergiesData);
+      });
 
     async function fetchConsumerData() {
       await fs
@@ -56,11 +60,11 @@ export default function Feed() {
   const Preferences = allergies.map((allergy) => (
     <Dropdown.Item
       id="preferences-allergies-dropdown-item"
-      key={allergy.label}
+      key={allergy}
       as="button"
-      onSelect={() => onPreferencesSelect(allergy.value)}
+      onSelect={() => onPreferencesSelect(allergy)}
     >
-      {allergy.label}
+      {allergy}
     </Dropdown.Item>
   ));
 
