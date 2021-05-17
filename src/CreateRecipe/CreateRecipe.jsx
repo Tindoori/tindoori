@@ -9,31 +9,36 @@ export default function CreateRecipe() {
   const [imgPathValue, setImgPathValue] = useState("");
   const [error, setError] = useState("");
   const [isValidated, setIsValidated] = useState(false);
+  const [isImgUploaded, setIsImgUploaded] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const {
-      recipeName,
-      description,
-      cookingTime,
-      ingredients,
-    } = event.target.elements;
+    if (imgPathValue) {
+      const {
+        recipeName,
+        description,
+        cookingTime,
+        ingredients,
+      } = event.target.elements;
 
-    const ref = firebase.firestore().collection("recipe").doc();
-    const userUid = firebase.auth().currentUser.uid;
-    ref
-      .set({
-        id: ref.id,
-        imgPath: imgPathValue,
-        name: recipeName.value,
-        description: description.value,
-        cookingTime: cookingTime.value,
-        ingredients: ingredients.value,
-        createdBy: userUid,
-      })
-      .catch((e) => setError(e));
+      const ref = firebase.firestore().collection("recipe").doc();
+      const userUid = firebase.auth().currentUser.uid;
+      ref
+        .set({
+          id: ref.id,
+          imgPath: imgPathValue,
+          name: recipeName.value,
+          description: description.value,
+          cookingTime: cookingTime.value,
+          ingredients: ingredients.value,
+          createdBy: userUid,
+        })
+        .catch((e) => setError(e));
 
-    setIsValidated(true);
+      setIsValidated(true);
+    } else {
+      setIsImgUploaded(false);
+    }
   };
 
   if (isValidated === true) {
@@ -56,6 +61,11 @@ export default function CreateRecipe() {
               onChange(e);
             }}
           />
+          {!isImgUploaded && (
+            <Alert variant="danger" role="alert">
+              Please upload an image before proceeding.
+            </Alert>
+          )}
         </Form.Group>
         <Form.Group controlId="formName" id="recipe-form-group">
           <Form.Label>Recipe name:</Form.Label>
