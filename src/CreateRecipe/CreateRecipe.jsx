@@ -10,16 +10,12 @@ export default function CreateRecipe() {
   const [error, setError] = useState("");
   const [isValidated, setIsValidated] = useState(false);
   const [isImgUploaded, setIsImgUploaded] = useState(true);
+  const [ingredient, setIngredient] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (imgPathValue) {
-      const {
-        recipeName,
-        description,
-        cookingTime,
-        ingredients,
-      } = event.target.elements;
+      const { recipeName, description, cookingTime } = event.target.elements;
 
       const ref = firebase.firestore().collection("recipe").doc();
       ref
@@ -29,7 +25,7 @@ export default function CreateRecipe() {
           name: recipeName.value,
           description: description.value,
           cookingTime: cookingTime.value,
-          ingredients: ingredients.value,
+          ingredients: ingredient,
         })
         .catch((e) => setError(e));
 
@@ -45,6 +41,10 @@ export default function CreateRecipe() {
 
   const onChange = (data) => {
     setImgPathValue(data);
+  };
+
+  const handleIngredients = (e) => {
+    setIngredient(e.target.value.split(","));
   };
 
   return (
@@ -98,8 +98,15 @@ export default function CreateRecipe() {
             type="text"
             placeholder="E.g: pasta, pesto, zucchini"
             name="ingredients"
+            as="textarea"
+            onChange={handleIngredients}
             required
           />
+          {!checkForComma && (
+            <Alert variant="danger" role="alert">
+              Please use a comma to seperate the ingredients
+            </Alert>
+          )}
         </Form.Group>
         {error && (
           <Alert variant="danger" role="alert">
