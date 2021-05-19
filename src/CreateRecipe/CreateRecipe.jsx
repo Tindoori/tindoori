@@ -87,6 +87,7 @@ export default function CreateRecipe() {
           <Form.Label>Cooking time in minutes:</Form.Label>
           <Form.Control
             type="number"
+            min="0"
             placeholder="E.g: 30"
             name="cookingTime"
             required
