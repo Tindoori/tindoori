@@ -102,11 +102,6 @@ export default function CreateRecipe() {
             onChange={handleIngredients}
             required
           />
-          {!checkForComma && (
-            <Alert variant="danger" role="alert">
-              Please use a comma to seperate the ingredients
-            </Alert>
-          )}
         </Form.Group>
         {error && (
           <Alert variant="danger" role="alert">
