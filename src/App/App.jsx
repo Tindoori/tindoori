@@ -6,6 +6,7 @@ import { AuthProvider } from "../Auth";
 import PrivateRoute from "../PrivateRoute";
 import CreateRecipe from "../CreateRecipe/CreateRecipe";
 import Registration from "../Registration/Registration";
+import Likes from "../Likes/Likes";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Router>
         <PrivateRoute exact path="/" component={Home} />
         <PrivateRoute exact path="/add-recipe" component={CreateRecipe} />
+        <PrivateRoute exact path="/likes" component={Likes} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/registration" component={Registration} />
       </Router>
