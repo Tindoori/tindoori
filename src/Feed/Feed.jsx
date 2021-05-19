@@ -9,7 +9,11 @@ export default function Feed() {
   const auth = firebase.auth();
   const [recipes, setRecipes] = useState([]);
   const [allergies, setAllergies] = useState([]);
-  const [selected, setSelected] = useState("");
+  const [mealtypes, setMealtypes] = useState([]);
+  const [selected, setSelected] = useState({
+    allergy: "",
+    mealtype: "",
+  });
 
   useEffect(() => {
     let recipesToFilter = [""];
@@ -20,6 +24,9 @@ export default function Feed() {
       .then((docSnapshot) => {
         const allergiesData = docSnapshot.get("allergy");
         setAllergies(allergiesData);
+
+        const mealtypesData = docSnapshot.get("mealtype");
+        setMealtypes(mealtypesData);
       });
 
     async function fetchConsumerData() {
@@ -38,10 +45,13 @@ export default function Feed() {
         });
     }
 
+    const query = fs
+      .collection("recipe")
+      .where("allergies", "!=", selected.allergy);
+
     fetchConsumerData().then(() =>
-      fs
-        .collection("recipe")
-        .where("allergies", "!=", selected)
+      query
+        .where("mealType", "==", selected.mealtype)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -54,29 +64,51 @@ export default function Feed() {
     );
   }, [fs, auth.currentUser.uid, selected]);
 
-  const onPreferencesSelect = (selectedAllergy) => {
-    setSelected(selectedAllergy);
+  const onPreferencesSelect = (preferenceType, selectedPref) => {
+    setSelected((prevState) => ({
+      ...prevState,
+      preferenceType: selectedPref,
+    }));
   };
+
   const Preferences = allergies.map((allergy) => (
     <Dropdown.Item
-      id="preferences-allergies-dropdown-item"
+      id="#preferences-dropdown-item"
       key={allergy}
       as="button"
-      onSelect={() => onPreferencesSelect(allergy)}
+      onSelect={() => onPreferencesSelect("allergy", allergy)}
     >
       {allergy}
     </Dropdown.Item>
   ));
 
+  const Mealtypes = mealtypes.map((mealtype) => (
+    <Dropdown.Item
+      id="#preferences-dropdown-item"
+      key={mealtype}
+      as="button"
+      onSelect={() => onPreferencesSelect("mealtype", mealtype)}
+    >
+      {mealtype}
+    </Dropdown.Item>
+  ));
+
   return (
     <div id="feed">
-      <div id="preferences-allergies">
+      <div id="preferences">
         <DropdownButton
-          id="preferences-allergies-dropdown"
+          id="preferences-dropdown"
           title="Allergies"
           variant="danger"
         >
           {Preferences}
+        </DropdownButton>
+        <DropdownButton
+          id="preferences-dropdown"
+          title="Mealtypes"
+          variant="danger"
+        >
+          {Mealtypes}
         </DropdownButton>
       </div>
       <div id="card-container">
