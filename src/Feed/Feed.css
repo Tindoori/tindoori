@@ -1,6 +1,6 @@
 #feed {
   margin: auto;
-  margin-top: 35px;
+  margin-top: 1em;
   width: 80%;
   max-width: 500px;
   display: flex;
@@ -16,13 +16,15 @@
   box-shadow: 0px 0px 10px lightgray;
 }
 
-#preferences-allergies-dropdown-item:hover {
+#preferences-dropdown-item:hover {
   background-color: #FFF2F2;
 }
-#preferences-allergies-dropdown-item.selected {
+#preferences-dropdown-item.selected {
   background-color: #FFDEDE;
 }
-
-#preferences-allergies-dropdown{
-  margin: 0.5em;
+#preferences {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 0.7em;
 }
