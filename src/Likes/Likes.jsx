@@ -3,7 +3,6 @@ import { Card, ListGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Likes.css";
 import firebase from "firebase";
-import NavBar from "../NavBar/NavBar";
 
 export default function Likes() {
   const fs = firebase.firestore();
@@ -45,7 +44,6 @@ export default function Likes() {
 
   return (
     <>
-      <NavBar />
       <ListGroup id="liked-recipe-list">
         {recipes.map((recipe) => (
           <Card id="liked-recipe-card" key={recipe.id}>
