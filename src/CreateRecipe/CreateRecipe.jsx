@@ -18,6 +18,7 @@ export default function CreateRecipe() {
       const { recipeName, description, cookingTime } = event.target.elements;
 
       const ref = firebase.firestore().collection("recipe").doc();
+      const userUid = firebase.auth().currentUser.uid;
       ref
         .set({
           id: ref.id,
@@ -25,7 +26,12 @@ export default function CreateRecipe() {
           name: recipeName.value,
           description: description.value,
           cookingTime: cookingTime.value,
+
           ingredients: ingredient,
+
+          ingredients: ingredients.value,
+          createdBy: userUid,
+
         })
         .catch((e) => setError(e));
 
@@ -84,10 +90,11 @@ export default function CreateRecipe() {
           />
         </Form.Group>
         <Form.Group controlId="formCookingTime" id="recipe-form-group">
-          <Form.Label>Cooking time:</Form.Label>
+          <Form.Label>Cooking time in minutes:</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="E.g: 30 minutes"
+            type="number"
+            min="0"
+            placeholder="E.g: 30"
             name="cookingTime"
             required
           />
