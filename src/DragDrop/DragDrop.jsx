@@ -101,6 +101,5 @@ export default function DragDrop(props) {
   );
 }
 DragDrop.propTypes = {
-  data: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };

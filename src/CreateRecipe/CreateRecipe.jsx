@@ -11,6 +11,7 @@ export default function CreateRecipe() {
   const [error, setError] = useState("");
   const [isValidated, setIsValidated] = useState(false);
   const [preferences, setPreferences] = useState();
+  const [isImgUploaded, setIsImgUploaded] = useState(true);
 
   const fs = firebase.firestore();
 
@@ -26,32 +27,38 @@ export default function CreateRecipe() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const {
-      recipeName,
-      description,
-      cookingTime,
-      ingredients,
-      allergy,
-      dietary,
-      mealtype,
-    } = event.target.elements;
+    if (imgPathValue) {
+      const {
+        recipeName,
+        description,
+        cookingTime,
+        ingredients,
+        allergy,
+        dietary,
+        mealtype,
+      } = event.target.elements;
 
-    const ref = fs.collection("recipe").doc();
-    ref
-      .set({
-        id: ref.id,
-        imgPath: imgPathValue,
-        name: recipeName.value,
-        description: description.value,
-        cookingTime: cookingTime.value,
-        ingredients: ingredients.value,
-        allergy: allergy.value,
-        dietary: dietary.value,
-        mealtype: mealtype.value,
-      })
-      .catch((e) => setError(e));
+      const ref = fs.collection("recipe").doc();
+      const userUid = firebase.auth().currentUser.uid;
+      ref
+        .set({
+          id: ref.id,
+          imgPath: imgPathValue,
+          name: recipeName.value,
+          description: description.value,
+          cookingTime: cookingTime.value,
+          ingredients: ingredients.value,
+          allergy: allergy.value,
+          dietary: dietary.value,
+          mealtype: mealtype.value,
+          createdBy: userUid,
+        })
+        .catch((e) => setError(e));
 
-    setIsValidated(true);
+      setIsValidated(true);
+    } else {
+      setIsImgUploaded(false);
+    }
   };
 
   if (isValidated === true) {
@@ -74,6 +81,11 @@ export default function CreateRecipe() {
               onChange(e);
             }}
           />
+          {!isImgUploaded && (
+            <Alert variant="danger" role="alert">
+              Please upload an image before proceeding.
+            </Alert>
+          )}
         </Form.Group>
         <Form.Group controlId="formName" id="recipe-form-group">
           <Form.Label>Recipe name:</Form.Label>
@@ -94,10 +106,11 @@ export default function CreateRecipe() {
           />
         </Form.Group>
         <Form.Group controlId="formCookingTime" id="recipe-form-group">
-          <Form.Label>Cooking time:</Form.Label>
+          <Form.Label>Cooking time in minutes:</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="E.g: 30 minutes"
+            type="number"
+            min="0"
+            placeholder="E.g: 30"
             name="cookingTime"
             required
           />
