@@ -19,7 +19,7 @@
 #preferences-dropdown-item:hover {
   background-color: #FFF2F2;
 }
-#preferences-dropdown-item.selected {
+#preferences-dropdown-item:checked {
   background-color: #FFDEDE;
 }
 #preferences {

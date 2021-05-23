@@ -49,11 +49,12 @@ export default function Feed() {
       .collection("recipe")
       .where("allergies", "!=", selected.allergy);
 
-    fetchConsumerData().then(() =>
-      query
-        .where("mealType", "==", selected.mealtype)
-        .get()
-        .then((querySnapshot) => {
+    // Clear recipes as firebase will filter recipes
+    setRecipes([]);
+
+    if (selected.mealtype === "") {
+      fetchConsumerData().then(() =>
+        query.get().then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             // Filter liked/disliked recipes
             if (!recipesToFilter.includes(doc.id)) {
@@ -61,13 +62,28 @@ export default function Feed() {
             }
           });
         })
-    );
+      );
+    } else {
+      fetchConsumerData().then(() =>
+        query
+          .where("mealType", "==", selected.mealtype)
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              // Filter liked/disliked recipes
+              if (!recipesToFilter.includes(doc.id)) {
+                setRecipes((prevState) => [...prevState, doc.data()]);
+              }
+            });
+          })
+      );
+    }
   }, [fs, auth.currentUser.uid, selected]);
 
   const onPreferencesSelect = (preferenceType, selectedPref) => {
     setSelected((prevState) => ({
       ...prevState,
-      preferenceType: selectedPref,
+      [preferenceType]: selectedPref,
     }));
   };
 
