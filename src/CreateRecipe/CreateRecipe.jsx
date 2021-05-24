@@ -28,10 +28,7 @@ export default function CreateRecipe() {
           cookingTime: cookingTime.value,
 
           ingredients: ingredient,
-
-          ingredients: ingredients.value,
           createdBy: userUid,
-
         })
         .catch((e) => setError(e));
 
