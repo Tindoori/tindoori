@@ -22,6 +22,7 @@ export default function NavBar() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="add-recipe">Add Recipe</Nav.Link>
             <Nav.Link href="likes">Liked Recipes</Nav.Link>
+            <Nav.Link href="recipeoverview">Recipe Overview</Nav.Link>
             <Form id="navbar-form">
               <Button
                 id="sign-out-button"
