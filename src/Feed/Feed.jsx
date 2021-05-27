@@ -66,7 +66,7 @@ export default function Feed() {
     } else {
       fetchConsumerData().then(() =>
         query
-          .where("mealType", "==", selected.mealtype)
+          .where("mealtype", "==", selected.mealtype)
           .get()
           .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -109,6 +109,21 @@ export default function Feed() {
     </Dropdown.Item>
   ));
 
+  const ClearSelection = (selectionKey) => (
+    <Dropdown.Item
+      as="button"
+      key="clear-allergies"
+      onSelect={() =>
+        setSelected((prevState) => ({
+          ...prevState,
+          [selectionKey]: "",
+        }))
+      }
+    >
+      Clear selection
+    </Dropdown.Item>
+  );
+
   return (
     <div id="feed">
       <div id="preferences">
@@ -118,6 +133,8 @@ export default function Feed() {
           variant="danger"
         >
           {Preferences}
+          <Dropdown.Divider />
+          {ClearSelection("allergy")}
         </DropdownButton>
         <DropdownButton
           id="preferences-dropdown"
@@ -125,6 +142,8 @@ export default function Feed() {
           variant="danger"
         >
           {Mealtypes}
+          <Dropdown.Divider />
+          {ClearSelection("mealtype")}
         </DropdownButton>
       </div>
       <div id="card-container">
