@@ -6,10 +6,8 @@ import "./RecipeCard.css";
 import TinderCard from "react-tinder-card";
 import * as PropTypes from "prop-types";
 import firebase from "firebase";
-import { useHistory } from "react-router";
 
 export default function RecipeCard({ recipe }) {
-  const history = useHistory();
   const onSwipe = (direction) => {
     const fs = firebase.firestore();
     const auth = firebase.auth();
@@ -35,18 +33,13 @@ export default function RecipeCard({ recipe }) {
     }
   };
 
-  const getRecipeId = (id) => {
-    console.log(id);
-    history.push(`/recipeoverview/${id}`);
-  };
-
   return (
     <TinderCard
       className="swipe"
       onSwipe={(dir) => onSwipe(dir, recipe)}
       preventSwipe={["up", "down"]}
     >
-      <Card id="recipe-card" onClick={() => getRecipeId(recipe.id)}>
+      <Card id="recipe-card">
         <Card.Img id="recipe-img" src={recipe.imgPath} />
         <Card.Body>
           <Card.Title>{recipe.name}</Card.Title>

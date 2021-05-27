@@ -5,7 +5,7 @@ import Login from "../Login/Login";
 import Home from "../Home/Home";
 import { AuthProvider } from "../Auth";
 import CreateRecipe from "../CreateRecipe/CreateRecipe";
-import RecipeOverview from "../RecipeOverview/RecipeOverview";
+import RecipeDetail from "../RecipeOverview/RecipeDetail";
 import Registration from "../Registration/Registration";
 import Navbar from "../NavBar/NavBar";
 import Likes from "../Likes/Likes";
@@ -24,8 +24,8 @@ function App() {
             <PrivateRoute exact path="/add-recipe" component={CreateRecipe} />
             <PrivateRoute
               exact
-              path="/recipeoverview/:id"
-              component={RecipeOverview}
+              path="/recipedetail/:id"
+              component={RecipeDetail}
             />
             <PrivateRoute exact path="/likes" component={Likes} />
           </>
