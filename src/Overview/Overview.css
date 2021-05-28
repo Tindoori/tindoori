@@ -1,11 +1,11 @@
 #recipe-overview-list {
+  padding: 0 50px;
   max-width: 100%;
   border-radius: 20px;
 }
 
 #recipe-overview-card {
-  margin: 50px auto auto;
-  max-width: 100%;
+  margin-top: 50px;
   overflow: hidden;
   border-radius: 20px;
 }
