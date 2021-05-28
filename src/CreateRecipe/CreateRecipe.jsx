@@ -33,6 +33,7 @@ export default function CreateRecipe() {
         description,
         cookingTime,
         ingredients,
+        steps,
         allergy,
         dietary,
         mealtype,
@@ -48,6 +49,7 @@ export default function CreateRecipe() {
           description: description.value,
           cookingTime: cookingTime.value,
           ingredients: ingredients.value,
+          steps: steps.value,
           allergy: allergy.value,
           dietary: dietary.value,
           mealtype: mealtype.value,
@@ -122,6 +124,15 @@ export default function CreateRecipe() {
             placeholder="E.g: pasta, pesto, zucchini"
             name="ingredients"
             required
+          />
+        </Form.Group>
+        <Form.Group controlId="formSteps" id="recipe-form-group">
+          <Form.Label>Steps:</Form.Label>
+          <Form.Control
+            as="textarea"
+            placeholder="E.g:&#10;1. step 1&#10;2. step 2&#10;3. step 3&#10;..."
+            rows={4}
+            name="steps"
           />
         </Form.Group>
         <Form.Group>
