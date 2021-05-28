@@ -1,9 +1,9 @@
-#liked-recipe-list {
+#recipe-overview-list {
   max-width: 100%;
   border-radius: 20px;
 }
 
-#liked-recipe-card {
+#recipe-overview-card {
   margin: 50px auto auto;
   max-width: 100%;
   overflow: hidden;

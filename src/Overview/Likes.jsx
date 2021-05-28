@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Likes.css";
+import "./Overview.css";
 import firebase from "firebase";
 
 export default function Likes() {
@@ -44,9 +44,9 @@ export default function Likes() {
 
   return (
     <>
-      <ListGroup id="liked-recipe-list">
+      <ListGroup id="recipe-overview-list">
         {recipes.map((recipe) => (
-          <Card id="liked-recipe-card" key={recipe.id}>
+          <Card id="recipe-overview-card" key={recipe.id}>
             <Card.Img id="recipe-img" src={recipe.imgPath} />
             <Card.Body>
               <Card.Title>{recipe.name}</Card.Title>

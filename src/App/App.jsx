@@ -7,8 +7,9 @@ import { AuthProvider } from "../Auth";
 import CreateRecipe from "../CreateRecipe/CreateRecipe";
 import Registration from "../Registration/Registration";
 import Navbar from "../NavBar/NavBar";
-import Likes from "../Likes/Likes";
+import Likes from "../Overview/Likes";
 import PrivateRoute from "../PrivateRoute";
+import Created from "../Overview/Created";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <PrivateRoute exact path="/" component={Home} />
             <PrivateRoute exact path="/add-recipe" component={CreateRecipe} />
             <PrivateRoute exact path="/likes" component={Likes} />
+            <PrivateRoute exact path="/Created" component={Created} />
           </>
         </Switch>
       </Router>
