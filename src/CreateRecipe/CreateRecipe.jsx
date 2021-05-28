@@ -12,6 +12,7 @@ export default function CreateRecipe() {
   const [isValidated, setIsValidated] = useState(false);
   const [preferences, setPreferences] = useState();
   const [isImgUploaded, setIsImgUploaded] = useState(true);
+  const [ingredient, setIngredient] = useState([]);
 
   const fs = firebase.firestore();
 
@@ -32,7 +33,6 @@ export default function CreateRecipe() {
         recipeName,
         description,
         cookingTime,
-        ingredients,
         steps,
         allergy,
         dietary,
@@ -48,11 +48,11 @@ export default function CreateRecipe() {
           name: recipeName.value,
           description: description.value,
           cookingTime: cookingTime.value,
-          ingredients: ingredients.value,
           steps: steps.value,
           allergy: allergy.value,
           dietary: dietary.value,
           mealtype: mealtype.value,
+          ingredients: ingredient,
           createdBy: userUid,
         })
         .catch((e) => setError(e));
@@ -69,6 +69,10 @@ export default function CreateRecipe() {
 
   const onChange = (data) => {
     setImgPathValue(data);
+  };
+
+  const handleIngredients = (e) => {
+    setIngredient(e.target.value.split(","));
   };
 
   return (
@@ -123,8 +127,11 @@ export default function CreateRecipe() {
             type="text"
             placeholder="E.g: pasta, pesto, zucchini"
             name="ingredients"
+            as="textarea"
+            onChange={handleIngredients}
             required
           />
+          <Form.Label>Use a comma to separate the ingredients.</Form.Label>
         </Form.Group>
         <Form.Group controlId="formSteps" id="recipe-form-group">
           <Form.Label>Steps:</Form.Label>
