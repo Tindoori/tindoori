@@ -33,6 +33,8 @@ export default function CreateRecipe() {
         recipeName,
         description,
         cookingTime,
+        ingredients,
+        steps,
         allergy,
         dietary,
         mealtype,
@@ -47,6 +49,8 @@ export default function CreateRecipe() {
           name: recipeName.value,
           description: description.value,
           cookingTime: cookingTime.value,
+          ingredients: ingredients.value,
+          steps: steps.value,
           allergy: allergy.value,
           dietary: dietary.value,
           mealtype: mealtype.value,
@@ -130,6 +134,15 @@ export default function CreateRecipe() {
             required
           />
           <Form.Label>Use a comma to seperate the ingredients.</Form.Label>
+        </Form.Group>
+        <Form.Group controlId="formSteps" id="recipe-form-group">
+          <Form.Label>Steps:</Form.Label>
+          <Form.Control
+            as="textarea"
+            placeholder="E.g:&#10;1. step 1&#10;2. step 2&#10;3. step 3&#10;..."
+            rows={4}
+            name="steps"
+          />
         </Form.Group>
         <Form.Group>
           <Form.Label>Dietary information:</Form.Label>
