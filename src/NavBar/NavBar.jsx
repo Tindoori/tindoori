@@ -19,7 +19,7 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/">Feed</Nav.Link>
             <Nav.Link href="add-recipe">Add Recipe</Nav.Link>
             <Nav.Link href="likes">Liked Recipes</Nav.Link>
             <Nav.Link href="created">Created Recipes</Nav.Link>

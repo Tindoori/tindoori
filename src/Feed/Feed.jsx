@@ -47,7 +47,7 @@ export default function Feed() {
 
     const query = fs
       .collection("recipe")
-      .where("allergies", "!=", selected.allergy);
+      .where("allergy", "!=", selected.allergy);
 
     // Clear recipes as firebase will filter recipes
     setRecipes([]);
