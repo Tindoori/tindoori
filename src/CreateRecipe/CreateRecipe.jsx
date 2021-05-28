@@ -33,7 +33,6 @@ export default function CreateRecipe() {
         recipeName,
         description,
         cookingTime,
-        ingredients,
         steps,
         allergy,
         dietary,
@@ -49,7 +48,6 @@ export default function CreateRecipe() {
           name: recipeName.value,
           description: description.value,
           cookingTime: cookingTime.value,
-          ingredients: ingredients.value,
           steps: steps.value,
           allergy: allergy.value,
           dietary: dietary.value,
@@ -133,7 +131,7 @@ export default function CreateRecipe() {
             onChange={handleIngredients}
             required
           />
-          <Form.Label>Use a comma to seperate the ingredients.</Form.Label>
+          <Form.Label>Use a comma to separate the ingredients.</Form.Label>
         </Form.Group>
         <Form.Group controlId="formSteps" id="recipe-form-group">
           <Form.Label>Steps:</Form.Label>
