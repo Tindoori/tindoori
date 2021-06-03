@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,9 +21,9 @@ export default function RecipeDetail({ match }) {
       });
   }, [db, recipeid]);
 
-  const handleChange = (e) => {
+  const handleRotate = (e) => {
     e.preventDefault();
-    setIsFlipped((prevState) => ({ isFlipped: !prevState }));
+    setIsFlipped((prev) => !prev);
   };
 
   return (
@@ -32,7 +31,7 @@ export default function RecipeDetail({ match }) {
       <br />
       {recipe && (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-          <div onClick={() => setIsFlipped((prev) => !prev)}>
+          <div role="tabpanel" onClick={handleRotate} aria-hidden="true">
             <Card id="recipe-card">
               <Card.Img id="recipe-img" src={recipe.imgPath} />
               <Card.Body>
@@ -63,20 +62,20 @@ export default function RecipeDetail({ match }) {
               </Card.Body>
             </Card>
           </div>
-          <div onClick={() => setIsFlipped((prev) => !prev)}>
-            <Card>
+          <div role="tabpanel" onClick={handleRotate} aria-hidden="true">
+            <Card id="recipe-card">
               <Card.Body>
                 <Card.Header>Ingredients</Card.Header>
                 <ListGroup variant="flush">
                   {recipe.ingredients.map((ingredient) => (
-                    <ListGroupItem>{ingredient}</ListGroupItem>
+                    <ListGroupItem key={ingredient}>{ingredient}</ListGroupItem>
                   ))}
                 </ListGroup>
                 <br />
                 <Card.Header>Steps</Card.Header>
                 <ListGroup variant="flush">
                   {recipe.steps.map((steps) => (
-                    <ListGroupItem>{steps}</ListGroupItem>
+                    <ListGroupItem key={steps}>{steps}</ListGroupItem>
                   ))}
                 </ListGroup>
               </Card.Body>
