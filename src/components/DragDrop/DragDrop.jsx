@@ -83,7 +83,7 @@ export default function DragDrop(props) {
     );
   return (
     <div>
-      <Card className="card">
+      <Card id="card">
         <input {...getInputProps()} />
         <Card.Body>
           <Card.Title>Upload image</Card.Title>
