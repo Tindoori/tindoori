@@ -3,6 +3,7 @@ import { Card, ListGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Likes.css";
 import firebase from "firebase";
+import PlaceholderCard from "../../components/PlaceholderCard/PlaceholderCard";
 
 export default function Likes() {
   const fs = firebase.firestore();
@@ -43,23 +44,25 @@ export default function Likes() {
   }, [fs, auth.currentUser.uid]);
 
   return (
-    <>
-      <ListGroup id="liked-recipe-list">
-        {recipes.map((recipe) => (
-          <Card id="liked-recipe-card" key={recipe.id}>
-            <Card.Img id="recipe-img" src={recipe.imgPath} />
-            <Card.Body>
-              <Card.Title>{recipe.name}</Card.Title>
-              <Card.Text className="recipe-description">
-                {recipe.description}
-              </Card.Text>
-              <Card.Text className="recipe-cook-time">
-                {recipe.cookingTime} min
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
-      </ListGroup>
-    </>
+    <ListGroup id="liked-recipe-list">
+      <PlaceholderCard
+        cardTitle="No liked recipes"
+        cardBody="All you liked recipes appear here."
+      />
+      {recipes.map((recipe) => (
+        <Card id="liked-recipe-card" key={recipe.id}>
+          <Card.Img id="recipe-img" src={recipe.imgPath} />
+          <Card.Body>
+            <Card.Title>{recipe.name}</Card.Title>
+            <Card.Text className="recipe-description">
+              {recipe.description}
+            </Card.Text>
+            <Card.Text className="recipe-cook-time">
+              {recipe.cookingTime} min
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      ))}
+    </ListGroup>
   );
 }
