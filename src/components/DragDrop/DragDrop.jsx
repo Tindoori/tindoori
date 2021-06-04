@@ -3,7 +3,7 @@ import { Card, ProgressBar, Button } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 import firebase from "firebase/app";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles.css";
+import "./DragDrop.css";
 import PropTypes from "prop-types";
 
 export default function DragDrop(props) {
