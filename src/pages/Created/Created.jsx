@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Card, ListGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Overview.css";
+import "../../components/Overview/Overview.css";
 import firebase from "firebase";
+import Overview from "../../components/Overview/Overview";
 
 export default function Created() {
   const fs = firebase.firestore();
@@ -24,22 +24,7 @@ export default function Created() {
 
   return (
     <>
-      <ListGroup id="recipe-overview-list">
-        {recipes.map((recipe) => (
-          <Card id="recipe-overview-card" key={recipe.id}>
-            <Card.Img id="recipe-img" src={recipe.imgPath} />
-            <Card.Body>
-              <Card.Title>{recipe.name}</Card.Title>
-              <Card.Text className="recipe-description">
-                {recipe.description}
-              </Card.Text>
-              <Card.Text className="recipe-cook-time">
-                {recipe.cookingTime} min
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
-      </ListGroup>
+      <Overview recipes={recipes} />
     </>
   );
 }
