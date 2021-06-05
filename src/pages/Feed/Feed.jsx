@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import firebase from "firebase";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import "./Feed.css";
-import Preferences from "../Preferences/Preferences";
+import Preferences from "../../components/Preferences/Preferences";
 
 export default function Feed() {
   const fs = firebase.firestore();
