@@ -3,8 +3,8 @@ import { Alert, Button, Card, Form, Col } from "react-bootstrap";
 import "./CreateRecipe.css";
 import firebase from "firebase";
 import { Redirect } from "react-router";
-import DragDrop from "../DragDrop/DragDrop";
-import FormDropdown from "../FormDropdown/FormDropdown";
+import DragDrop from "../../components/DragDrop/DragDrop";
+import FormDropdown from "../../components/FormDropdown/FormDropdown";
 
 export default function CreateRecipe() {
   const [imgPathValue, setImgPathValue] = useState("");
