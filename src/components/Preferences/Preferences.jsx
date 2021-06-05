@@ -8,11 +8,13 @@ export default function Preferences({
   onPreferencesSelect,
   onClearPreference,
 }) {
+  const toUpperCase =
+    preferenceType.charAt(0).toUpperCase() + preferenceType.slice(1);
   return (
     <div>
       <DropdownButton
         id="preferences-dropdown"
-        title={preferenceType}
+        title={toUpperCase}
         variant="danger"
         style={{ textTransform: "capitalize" }}
       >
