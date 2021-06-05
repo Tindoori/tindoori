@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router";
-import Login from "../Login/Login";
-import Home from "../Home/Home";
-import { AuthProvider } from "../Auth";
-import CreateRecipe from "../CreateRecipe/CreateRecipe";
-import Registration from "../Registration/Registration";
+import Login from "../../pages/Login/Login";
+import Home from "../../pages/Home/Home";
+import { AuthProvider } from "../../utils/Auth";
+import CreateRecipe from "../../pages/CreateRecipe/CreateRecipe";
+import Registration from "../../pages/Registration/Registration";
 import Navbar from "../NavBar/NavBar";
-import Likes from "../Likes/Likes";
-import PrivateRoute from "../PrivateRoute";
+import Likes from "../../pages/Likes/Likes";
+import PrivateRoute from "../../utils/PrivateRoute";
 
 function App() {
   return (

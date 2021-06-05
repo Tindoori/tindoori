@@ -3,8 +3,7 @@ import { Redirect } from "react-router";
 import firebase from "firebase/app";
 import PropTypes from "prop-types";
 import { Button, Alert, Form, Card } from "react-bootstrap";
-import logo from "../images/logo.png";
-import { AuthContext } from "../Auth";
+import { AuthContext } from "../../utils/Auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = ({ history }) => {
@@ -36,7 +35,7 @@ const Login = ({ history }) => {
   return (
     <Card id="registration-card">
       <div id="feed">
-        <img src={logo} alt="Cannot load " />
+        <img src="logo.png" alt="Cannot load " />
         <h1>Tindoori</h1>
         <Form onSubmit={handleLogin}>
           <Form.Group id="registration-form-group">
