@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
-import { DropdownButton, Dropdown } from "react-bootstrap";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import "./Feed.css";
+import Preferences from "../Preferences/Preferences";
 
 export default function Feed() {
   const fs = firebase.firestore();
@@ -47,7 +47,7 @@ export default function Feed() {
 
     const query = fs
       .collection("recipe")
-      .where("allergies", "!=", selected.allergy);
+      .where("allergy", "!=", selected.allergy);
 
     // Clear recipes as firebase will filter recipes
     setRecipes([]);
@@ -87,64 +87,36 @@ export default function Feed() {
     }));
   };
 
-  const Preferences = allergies.map((allergy) => (
-    <Dropdown.Item
-      id="#preferences-dropdown-item"
-      key={allergy}
-      as="button"
-      onSelect={() => onPreferencesSelect("allergy", allergy)}
-    >
-      {allergy}
-    </Dropdown.Item>
-  ));
-
-  const Mealtypes = mealtypes.map((mealtype) => (
-    <Dropdown.Item
-      id="#preferences-dropdown-item"
-      key={mealtype}
-      as="button"
-      onSelect={() => onPreferencesSelect("mealtype", mealtype)}
-    >
-      {mealtype}
-    </Dropdown.Item>
-  ));
-
-  const ClearSelection = (selectionKey) => (
-    <Dropdown.Item
-      as="button"
-      key="clear-allergies"
-      onSelect={() =>
-        setSelected((prevState) => ({
-          ...prevState,
-          [selectionKey]: "",
-        }))
-      }
-    >
-      Clear selection
-    </Dropdown.Item>
-  );
+  const onClearPreference = (data) => {
+    setSelected((prevState) => ({
+      ...prevState,
+      [data]: "",
+    }));
+  };
 
   return (
     <div id="feed">
       <div id="preferences">
-        <DropdownButton
-          id="preferences-dropdown"
-          title="Allergies"
-          variant="danger"
-        >
-          {Preferences}
-          <Dropdown.Divider />
-          {ClearSelection("allergy")}
-        </DropdownButton>
-        <DropdownButton
-          id="preferences-dropdown"
-          title="Mealtypes"
-          variant="danger"
-        >
-          {Mealtypes}
-          <Dropdown.Divider />
-          {ClearSelection("mealtype")}
-        </DropdownButton>
+        <Preferences
+          preferenceType="allergy"
+          preferenceData={allergies}
+          onPreferencesSelect={(type, selectedItem) => {
+            onPreferencesSelect(type.valueOf(), selectedItem.valueOf());
+          }}
+          onClearPreference={(e) => {
+            onClearPreference(e.valueOf());
+          }}
+        />
+        <Preferences
+          preferenceType="mealtype"
+          preferenceData={mealtypes}
+          onPreferencesSelect={(type, selectedItem) => {
+            onPreferencesSelect(type.valueOf(), selectedItem.valueOf());
+          }}
+          onClearPreference={(e) => {
+            onClearPreference(e.valueOf());
+          }}
+        />
       </div>
       <div id="card-container">
         {recipes.map((recipe) => (
