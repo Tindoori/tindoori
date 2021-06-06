@@ -19,9 +19,8 @@ export default function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="add-recipe">Add Recipe</Nav.Link>
-            <Nav.Link href="likes">Liked Recipes</Nav.Link>
-            <Nav.Link href="recipedetail">Recipe Details</Nav.Link>
+            <Nav.Link href="/add-recipe">Add Recipe</Nav.Link>
+            <Nav.Link href="/likes">Liked Recipes</Nav.Link>
             <Form id="navbar-form">
               <Button
                 id="sign-out-button"
