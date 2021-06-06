@@ -44,6 +44,7 @@ export default function Feed() {
 
   return (
     <div id="feed">
+      <h1 id="feed-swipe-instructions">Start swiping left or right</h1>
       <div id="card-container">
         {recipes.map((recipe) => (
           <RecipeCard recipe={recipe} key={recipe.id} />
