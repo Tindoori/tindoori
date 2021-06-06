@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router";
 import Login from "../../pages/Login/Login";
 import Home from "../../pages/Home/Home";
+import Profile from "../../pages/Profile/Profile";
 import { AuthProvider } from "../../utils/Auth";
 import CreateRecipe from "../../pages/CreateRecipe/CreateRecipe";
 import Registration from "../../pages/Registration/Registration";
@@ -22,6 +23,7 @@ function App() {
             <PrivateRoute exact path="/" component={Home} />
             <PrivateRoute exact path="/add-recipe" component={CreateRecipe} />
             <PrivateRoute exact path="/likes" component={Likes} />
+            <PrivateRoute exact path="/Profile" component={Profile} />
           </>
         </Switch>
       </Router>
