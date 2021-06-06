@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import PlaceholderCard from "../../components/PlaceholderCard/PlaceholderCard";
+import PlaceholderCard from "../../components/Placeholder/Placeholder";
 import "./Feed.css";
 
 export default function Feed() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import PropTypes from "prop-types";
-import "./PlaceholderCard.css";
+import "./Placeholder.css";
 
 // Pass on placeholder text
 export default function PlaceholderCard({ cardTitle, cardBody }) {

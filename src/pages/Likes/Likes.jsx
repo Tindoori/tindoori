@@ -3,7 +3,7 @@ import { Card, ListGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Likes.css";
 import firebase from "firebase";
-import PlaceholderCard from "../../components/PlaceholderCard/PlaceholderCard";
+import PlaceholderCard from "../../components/Placeholder/Placeholder";
 
 export default function Likes() {
   const fs = firebase.firestore();
