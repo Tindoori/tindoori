@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "firebase/firestore";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, ListGroupItem, ListGroup } from "react-bootstrap";
+import { Card, ListGroupItem, ListGroup, Form } from "react-bootstrap";
 import firebase from "firebase";
 import * as PropTypes from "prop-types";
 import ReactCardFlip from "react-card-flip";
@@ -28,6 +28,7 @@ export default function RecipeDetail({ match }) {
 
   return (
     <>
+      <Form.Label>Click on the card to see the rest of the details.</Form.Label>
       <br />
       {recipe && (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">

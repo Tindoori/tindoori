@@ -142,6 +142,7 @@ export default function CreateRecipe() {
             onChange={(e) => setSteps(e.target.value.split(","))}
             name="steps"
           />
+          <Form.Label>Use a comma to separate the steps.</Form.Label>
         </Form.Group>
         <Form.Group>
           <Form.Label>Dietary information:</Form.Label>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, ListGroup } from "react-bootstrap";
+import { Card, Form, ListGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Likes.css";
 import firebase from "firebase";
@@ -52,6 +52,9 @@ export default function Likes() {
   return (
     <>
       <ListGroup id="liked-recipe-list">
+        <Form.Label className="text-center">
+          Click on the card to the recipe details.
+        </Form.Label>
         {recipes.map((recipe) => (
           <Card
             id="liked-recipe-card"
