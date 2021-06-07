@@ -8,6 +8,7 @@ import CreateRecipe from "../../pages/CreateRecipe/CreateRecipe";
 import Registration from "../../pages/Registration/Registration";
 import Navbar from "../NavBar/NavBar";
 import Likes from "../../pages/Likes/Likes";
+import Created from "../../pages/Created/Created";
 import PrivateRoute from "../../utils/PrivateRoute";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <PrivateRoute exact path="/" component={Home} />
             <PrivateRoute exact path="/add-recipe" component={CreateRecipe} />
             <PrivateRoute exact path="/likes" component={Likes} />
+            <PrivateRoute exact path="/created" component={Created} />
           </>
         </Switch>
       </Router>
