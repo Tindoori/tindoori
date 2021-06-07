@@ -4,7 +4,6 @@
   max-width: 500px;
   display: flex;
   flex-direction: column;
-  min-height: 80%;
 }
 
 #swipe-buttons-container {
