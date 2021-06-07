@@ -90,6 +90,15 @@ export default function RecipeDetail({ match }) {
                     </Card.Text>
                   </ListGroupItem>
                 </Card.Body>
+                {showDeleteButton && (
+                  <Button
+                    id="recipe-detail-delete"
+                    variant="danger"
+                    onClick={handleShowModal}
+                  >
+                    Delete
+                  </Button>
+                )}
               </Card>
             </div>
             <div role="tabpanel" onClick={handleRotate} aria-hidden="true">
@@ -116,15 +125,6 @@ export default function RecipeDetail({ match }) {
           </ReactCardFlip>
         )}
       </div>
-      {showDeleteButton && (
-        <Button
-          id="recipe-detail-delete"
-          variant="danger"
-          onClick={handleShowModal}
-        >
-          Delete
-        </Button>
-      )}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Warning</Modal.Title>
