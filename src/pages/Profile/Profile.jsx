@@ -3,70 +3,64 @@ import firebase from "firebase";
 import { Card, Form, Button } from "react-bootstrap";
 
 export default function Profile() {
-  const [email, setEmail] = useState();
-  // const fs = firebase.firestore();
-  // const auth = firebase.auth();
-  const currUser = firebase.auth().currentUser;
-  // const currEmail = firebase.auth().currentUser.email;
+  const [email, setEmail] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [repeatNewPass, setRepeatNewPass] = useState("");
+  const user = firebase.auth().currentUser;
 
   useEffect(() => {
     setEmail(firebase.auth().currentUser.email);
   }, []);
 
-  const fetchConsumerData = () => {
-    // console.log(currUser.email);
-  };
-
   const changeEmail = () => {
-    currUser.updateEmail(email);
+    user.updateEmail(email);
   };
 
-  fetchConsumerData();
+  const changePass = () => {
+    if (newPass === repeatNewPass) {
+      user.updatePassword(newPass).catch((error) => console.log(error));
+    }
+  };
+
+  const onClickHandler = () => {
+    changeEmail();
+    changePass();
+  };
+
   return (
     <Card id="create-recipe-card">
       <Card.Title>Profile</Card.Title>
       <Form className="recipe-form" onSubmit={null}>
-        <Form.Group controlId="formName" id="recipe-form-group">
+        <Form.Group controlId="email" id="recipe-form-group">
           <Form.Label>Email:</Form.Label>
           <Form.Control
             type="email"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          />
-          <Form.Label>Old Password:</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="E.g: pasta pesto"
-            name="oldPass"
             required
           />
         </Form.Group>
-        <Form.Label>New Password:</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="E.g: pasta pesto"
-          name="newPass"
-          required
-        />
-        <Form.Label>Repeat new Password:</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="E.g: pasta pesto"
-          name="newPassRepeat"
-          required
-        />
+        <Form.Group controlId="password" id="recipe-form-group">
+          <Form.Label>New Password:</Form.Label>
+          <Form.Control
+            type="password"
+            onChange={(e) => setNewPass(e.target.value)}
+          />
+          <Form.Label>Repeat new Password:</Form.Label>
+          <Form.Control
+            type="password"
+            onChange={(e) => setRepeatNewPass(e.target.value)}
+          />
+        </Form.Group>
         <Button
           id="recipe-form-button"
           variant="danger"
           type="submit"
-          onClick={changeEmail}
+          onClick={() => onClickHandler()}
           block
         >
-          Change password
-        </Button>
-        <Button id="recipe-form-button" variant="danger" type="submit" block>
-          Create recipe
+          Change info
         </Button>
       </Form>
     </Card>
