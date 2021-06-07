@@ -47,11 +47,11 @@ export default function Feed() {
   return (
     <div id="feed">
       <h4 id="feed-swipe-instructions">Recipe feed</h4>
-      <PlaceholderCard
-        cardTitle="No recipes left!"
-        cardBody="Change your filters or come back later."
-      />
       <div id="card-container">
+        <PlaceholderCard
+          cardTitle="No recipes left!"
+          cardBody="Change your filters or come back later."
+        />
         {recipes.map((recipe) => (
           <RecipeCard recipe={recipe} key={recipe.id} />
         ))}
