@@ -12,8 +12,9 @@ export default function NavBar() {
   return (
     <>
       <Navbar id="navbar" expand="md">
-        <Navbar.Brand href="/">
+        <Navbar.Brand id="navbar-brand" href="/">
           <img src="logo.png" width="40" alt="Tindoori logo" />
+          <h5 id="navbar-brand-title"> Tindoori </h5>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

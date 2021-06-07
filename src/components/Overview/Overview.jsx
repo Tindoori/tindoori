@@ -10,7 +10,6 @@ export default function Overview({ recipes }) {
   const history = useHistory();
 
   const getRecipeId = (id) => {
-    console.log(id);
     history.push(`/recipedetail/${id}`);
   };
   return (

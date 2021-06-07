@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../components/Overview/Overview.css";
 import "./Created.css";
 import firebase from "firebase";
+import { Form } from "react-bootstrap";
 import Overview from "../../components/Overview/Overview";
 
 export default function Created() {
@@ -26,6 +27,9 @@ export default function Created() {
   return (
     <>
       <h4 id="created-recipes-title">My recipes</h4>
+      <Form.Text id="helptext-created" muted>
+        Here are all recipes you created!
+      </Form.Text>
       <Overview recipes={recipes} />
     </>
   );
