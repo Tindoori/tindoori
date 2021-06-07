@@ -46,8 +46,8 @@ export default function Likes() {
   return (
     <ListGroup id="liked-recipe-list">
       <PlaceholderCard
-        cardTitle="No liked recipes"
-        cardBody="All you liked recipes appear here."
+        cardTitle="No liked recipes yet!"
+        cardBody="All your liked recipes will appear here."
       />
       {recipes.map((recipe) => (
         <Card id="liked-recipe-card" key={recipe.id}>
