@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
+import { Form } from "react-bootstrap";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import "./Feed.css";
 
@@ -44,12 +45,15 @@ export default function Feed() {
 
   return (
     <div id="feed">
-      <h1 id="feed-swipe-instructions">Start swiping left or right</h1>
+      <h4 id="feed-swipe-instructions">Recipe feed</h4>
       <div id="card-container">
         {recipes.map((recipe) => (
           <RecipeCard recipe={recipe} key={recipe.id} />
         ))}
       </div>
+      <Form.Text id="swipe-help-text">
+        Swipe left to dismiss the recipe, swipe right to like the recipe!
+      </Form.Text>
     </div>
   );
 }
