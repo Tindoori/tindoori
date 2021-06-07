@@ -7,6 +7,7 @@
   overflow: hidden;
   border-radius: 20px;
   position: absolute;
+  min-width: 100%;
 }
 
 #recipe-img {
@@ -16,7 +17,7 @@
   height: 250px;
 }
 
-.recipe-description {
+.recipe-text {
   max-lines: 1;
   text-overflow: ellipsis;
   overflow: hidden;

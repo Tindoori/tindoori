@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
+import { Form } from "react-bootstrap";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
+import PlaceholderCard from "../../components/Placeholder/Placeholder";
 import "./Feed.css";
 import Preferences from "../../components/Preferences/Preferences";
 
@@ -96,6 +98,7 @@ export default function Feed() {
 
   return (
     <div id="feed">
+      <h4 id="feed-swipe-instructions">Recipe feed</h4>
       <div id="preferences">
         <Preferences
           preferenceType="allergy"
@@ -119,10 +122,17 @@ export default function Feed() {
         />
       </div>
       <div id="card-container">
+        <PlaceholderCard
+          cardTitle="No recipes left!"
+          cardBody="Change your filters or come back later."
+        />
         {recipes.map((recipe) => (
           <RecipeCard recipe={recipe} key={recipe.id} />
         ))}
       </div>
+      <Form.Text id="swipe-help-text">
+        Swipe left to dismiss the recipe, swipe right to like the recipe!
+      </Form.Text>
     </div>
   );
 }

@@ -28,3 +28,21 @@
   width: 100%;
   margin-bottom: 0.7em;
 }
+
+
+#feed-swipe-instructions {
+  margin: auto;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+#swipe-help-text {
+  margin: auto;
+  padding: 0.8rem;
+  text-align: center;
+  margin-top: 0.2rem;
+}
+
+#card-container {
+  margin-bottom: 24rem;
+}
