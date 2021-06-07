@@ -1,6 +1,6 @@
 #feed {
   margin: auto;
-  margin-top: 50px;
+  margin-top: 1em;
   width: 80%;
   max-width: 500px;
   display: flex;
@@ -14,4 +14,35 @@
 /* Gives the last card on the pile a drop shadow*/
 #card-container > :first-child > #recipe-card {
   box-shadow: 0px 0px 10px lightgray;
+}
+
+#preferences-dropdown-item:hover {
+  background-color: #FFF2F2;
+}
+#preferences-dropdown-item:checked {
+  background-color: #FFDEDE;
+}
+#preferences {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 0.7em;
+}
+
+
+#feed-swipe-instructions {
+  margin: auto;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+#swipe-help-text {
+  margin: auto;
+  padding: 0.8rem;
+  text-align: center;
+  margin-top: 0.2rem;
+}
+
+#card-container {
+  margin-bottom: 24rem;
 }
