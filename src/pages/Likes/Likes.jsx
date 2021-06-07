@@ -53,7 +53,7 @@ export default function Likes() {
     <>
       <ListGroup id="liked-recipe-list">
         <Form.Label className="text-center">
-          Click on the card to the recipe details.
+          Click on the card to view the recipe details.
         </Form.Label>
         {recipes.map((recipe) => (
           <Card

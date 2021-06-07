@@ -39,11 +39,11 @@ export default function RecipeCard({ recipe }) {
       onSwipe={(dir) => onSwipe(dir, recipe)}
       preventSwipe={["up", "down"]}
     >
-      <Card id="recipe-card">
-        <Card.Img id="recipe-img" src={recipe.imgPath} />
+      <Card id="recipedetail-card">
+        <Card.Img id="recipedetail-img" src={recipe.imgPath} />
         <Card.Body>
           <Card.Title>{recipe.name}</Card.Title>
-          <Card.Text className="recipe-description">
+          <Card.Text className="recipedetail-description">
             {recipe.description}
           </Card.Text>
           <Card.Text className="recipe-cook-time">

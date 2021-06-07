@@ -137,7 +137,7 @@ export default function CreateRecipe() {
           <Form.Label>Steps:</Form.Label>
           <Form.Control
             as="textarea"
-            placeholder="E.g:&#10;1. step 1&#10;2. step 2&#10;3. step 3&#10;..."
+            placeholder="E.g: cut garlic, add madam jeannete, add meat"
             rows={4}
             onChange={(e) => setSteps(e.target.value.split(","))}
             name="steps"
