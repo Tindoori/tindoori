@@ -44,7 +44,7 @@ export default function Profile() {
 
   return (
     <Card id="create-recipe-card">
-      <Card.Title>Profile</Card.Title>
+      <Card.Title>Edit Profile</Card.Title>
       <Card.Body>
         On this page you can change your email and/or your password.
       </Card.Body>
