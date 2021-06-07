@@ -42,10 +42,8 @@ export default function RecipeCard({ recipe }) {
       <Card id="recipe-card">
         <Card.Img id="recipe-img" src={recipe.imgPath} />
         <Card.Body>
-          <Card.Title>{recipe.name}</Card.Title>
-          <Card.Text className="recipe-description">
-            {recipe.description}
-          </Card.Text>
+          <Card.Title className="recipe-text">{recipe.name}</Card.Title>
+          <Card.Text className="recipe-text">{recipe.description}</Card.Text>
           <Card.Text className="recipe-cook-time">
             {recipe.cookingTime} min
           </Card.Text>

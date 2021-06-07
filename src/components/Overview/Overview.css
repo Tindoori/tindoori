@@ -1,0 +1,14 @@
+#overview-recipe-list {
+    margin: auto;
+    margin-top: 50px;
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+#overview-recipe-card {
+    margin-bottom: 25px;
+    overflow: hidden;
+    border-radius: 20px;
+}

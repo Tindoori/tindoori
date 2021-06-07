@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card, ListGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Likes.css";
+import "../../components/Overview/Overview.css";
 import firebase from "firebase";
-import { useHistory } from "react-router";
-import PlaceholderCard from "../../components/Placeholder/Placeholder";
+import Overview from "../../components/Overview/Overview";
 
 export default function Likes() {
-  const history = useHistory();
   const fs = firebase.firestore();
   const auth = firebase.auth();
   const [recipes, setRecipes] = useState([]);
@@ -45,35 +42,9 @@ export default function Likes() {
     });
   }, [fs, auth.currentUser.uid]);
 
-  const getRecipeId = (id) => {
-    console.log(id);
-    history.push(`/recipedetail/${id}`);
-  };
-
   return (
-    <ListGroup id="liked-recipe-list">
-      <PlaceholderCard
-        cardTitle="No liked recipes yet!"
-        cardBody="All your liked recipes will appear here."
-      />
-      {recipes.map((recipe) => (
-        <Card
-          id="liked-recipe-card"
-          key={recipe.id}
-          onClick={() => getRecipeId(recipe.id)}
-        >
-          <Card.Img id="recipe-img" src={recipe.imgPath} />
-          <Card.Body>
-            <Card.Title>{recipe.name}</Card.Title>
-            <Card.Text className="recipe-description">
-              {recipe.description}
-            </Card.Text>
-            <Card.Text className="recipe-cook-time">
-              {recipe.cookingTime} min
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      ))}
-    </ListGroup>
+    <>
+      <Overview recipes={recipes} />
+    </>
   );
 }
