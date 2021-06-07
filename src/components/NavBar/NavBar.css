@@ -12,6 +12,8 @@
 }
 
 #navbar-brand-title {
+    align-self: center;
+    margin-bottom: 0;
     height: fit-content;
     font-size: 1.2rem !important;
 }
