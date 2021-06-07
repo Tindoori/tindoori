@@ -3,9 +3,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, ListGroup } from "react-bootstrap";
 import "../RecipeCard/RecipeCard.css";
 import PropTypes from "prop-types";
+import { useHistory } from "react-router";
 import PlaceholderCard from "../Placeholder/Placeholder";
 
 export default function Overview({ recipes }) {
+  const history = useHistory();
+
+  const getRecipeId = (id) => {
+    console.log(id);
+    history.push(`/recipedetail/${id}`);
+  };
   return (
     <ListGroup id="overview-recipe-list">
       <PlaceholderCard
@@ -13,7 +20,11 @@ export default function Overview({ recipes }) {
         cardBody="Your recipes will appear here."
       />
       {recipes.map((recipe) => (
-        <Card id="overview-recipe-card" key={recipe.id}>
+        <Card
+          id="overview-recipe-card"
+          key={recipe.id}
+          onClick={() => getRecipeId(recipe.id)}
+        >
           <Card.Img id="recipe-img" src={recipe.imgPath} />
           <Card.Body>
             <Card.Title>{recipe.name}</Card.Title>

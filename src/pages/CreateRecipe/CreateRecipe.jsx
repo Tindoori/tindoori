@@ -13,6 +13,7 @@ export default function CreateRecipe() {
   const [preferences, setPreferences] = useState();
   const [isImgUploaded, setIsImgUploaded] = useState(true);
   const [ingredient, setIngredient] = useState([]);
+  const [step, setSteps] = useState([]);
 
   const fs = firebase.firestore();
 
@@ -33,7 +34,6 @@ export default function CreateRecipe() {
         recipeName,
         description,
         cookingTime,
-        steps,
         allergy,
         dietary,
         mealtype,
@@ -48,11 +48,11 @@ export default function CreateRecipe() {
           name: recipeName.value,
           description: description.value,
           cookingTime: cookingTime.value,
-          steps: steps.value,
           allergy: allergy.value,
           dietary: dietary.value,
           mealtype: mealtype.value,
           ingredients: ingredient,
+          steps: step,
           createdBy: userUid,
         })
         .catch((e) => setError(e));
@@ -137,10 +137,12 @@ export default function CreateRecipe() {
           <Form.Label>Steps:</Form.Label>
           <Form.Control
             as="textarea"
-            placeholder="E.g:&#10;1. step 1&#10;2. step 2&#10;3. step 3&#10;..."
+            placeholder="E.g: cut garlic, add madam jeannete, add meat"
             rows={4}
+            onChange={(e) => setSteps(e.target.value.split(","))}
             name="steps"
           />
+          <Form.Label>Use a comma to separate the steps.</Form.Label>
         </Form.Group>
         <Form.Group>
           <Form.Label>Dietary information:</Form.Label>

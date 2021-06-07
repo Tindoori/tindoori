@@ -11,6 +11,7 @@ import Navbar from "../NavBar/NavBar";
 import Likes from "../../pages/Likes/Likes";
 import Created from "../../pages/Created/Created";
 import PrivateRoute from "../../utils/PrivateRoute";
+import RecipeDetail from "../../pages/RecipeOverview/RecipeDetail";
 
 function App() {
   return (
@@ -26,6 +27,11 @@ function App() {
             <PrivateRoute exact path="/likes" component={Likes} />
             <PrivateRoute exact path="/created" component={Created} />
             <PrivateRoute exact path="/Profile" component={Profile} />
+            <PrivateRoute
+              exact
+              path="/recipedetail/:id"
+              component={RecipeDetail}
+            />
           </>
         </Switch>
       </Router>
