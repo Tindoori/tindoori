@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useState } from "react";
 import { Redirect } from "react-router";
 import firebase from "firebase/app";
 import PropTypes from "prop-types";
+import "./Login.css";
 import { Button, Alert, Form, Card } from "react-bootstrap";
 import { AuthContext } from "../../utils/Auth";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -33,8 +34,8 @@ const Login = ({ history }) => {
   }
 
   return (
-    <Card id="registration-card">
-      <div id="feed">
+    <Card id="login-card">
+      <div id="login">
         <img src="logo.png" alt="Cannot load " />
         <h1>Tindoori</h1>
         <Form onSubmit={handleLogin}>
@@ -65,11 +66,9 @@ const Login = ({ history }) => {
               {error.message}
             </Alert>
           )}
-          <div id="#registration-form-button ">
-            <Button type="submit" variant="danger">
-              Login
-            </Button>
-          </div>
+          <Button id="#login-form-button" type="submit" variant="danger">
+            Login
+          </Button>
         </Form>
         <br />
         <div>

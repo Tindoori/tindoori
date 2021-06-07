@@ -1,10 +1,16 @@
 #registration-card {
     padding: 2.5rem;
-    margin: 1.3rem;
+    margin: auto;
+    margin-top: 1rem;
+    width: 87%;
     align-items: center;
+    box-shadow: 0px 0px 10px lightgray;
 }
 
 #registration-form-group, #registration-form-alert, #registration-form-button {
-    min-width: 17em;
     max-width: 25em;
+}
+
+#logo {
+    height: 4rem;
 }

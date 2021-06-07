@@ -1,0 +1,20 @@
+#login {
+    margin: auto;
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+#login-card {
+    padding: 2.5rem;
+    margin: 1.3rem;
+    align-items: center;
+    box-shadow: 0px 0px 10px lightgray;
+}
+
+#login-form-button {
+    min-width: 20em;
+    max-width: 25em;
+}
+

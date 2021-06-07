@@ -16,7 +16,6 @@ export default function Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO bootstrap validation instead of validation below?
     if (user.password !== user.confirmPassword) {
       setUser({
         ...user,
@@ -75,6 +74,7 @@ export default function Registration() {
 
   return (
     <Card id="registration-card">
+      <img id="logo" src="logo.png" alt="Cannot load " />
       <Card.Title>Create an account</Card.Title>
       <Form className="registration-form" onSubmit={handleSubmit}>
         <Form.Group id="registration-form-group" controlId="formDisplayName">

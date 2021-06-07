@@ -22,13 +22,13 @@
 #preferences-dropdown-item:checked {
   background-color: #FFDEDE;
 }
+
 #preferences {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
   margin-bottom: 0.7em;
 }
-
 
 #feed-swipe-instructions {
   margin: auto;
