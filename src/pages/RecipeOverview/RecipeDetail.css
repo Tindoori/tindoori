@@ -1,20 +1,20 @@
-#recipe-detail-container{
+#recipe-detail-container {
     margin: auto;
     margin-top: 1.8rem;
-    margin-bottom:900px;
+    margin-bottom: 900px;
     width: 80%;
     max-width: 500px;
     display: flex;
     flex-direction: column;
-
 }
+
 #recipe-detail-card {
     max-width: 100%;
     overflow: hidden;
     border-radius: 20px;
     position: absolute;
     min-width: 100%;
-    margin-bottom:100px;
+    margin-bottom: 3rem;
 }
 
 #recipe-detail-img {
