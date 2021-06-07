@@ -26,8 +26,8 @@ export default function Profile() {
   const changePass = () => {
     if (newPass === repeatNewPass && newPass.length !== 0) {
       user.updatePassword(newPass).catch((e) => {
-        setSuccess(false);
         setMessage(e.message);
+        setSuccess(false);
       });
       setSuccess(true);
     } else if (newPass !== repeatNewPass) {
@@ -73,11 +73,9 @@ export default function Profile() {
             onChange={(e) => setRepeatNewPass(e.target.value)}
           />
           {success ? (
-            <>
-              <Alert variant="success" role="alert">
-                Information is succesfully changed
-              </Alert>
-            </>
+            <Alert variant="success" role="alert">
+              Information is successfully changed
+            </Alert>
           ) : (
             message && (
               <Alert variant="danger" role="alert">
