@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../components/Overview/Overview.css";
 import firebase from "firebase";
+import { Form } from "react-bootstrap";
 import Overview from "../../components/Overview/Overview";
 
 export default function Likes() {
@@ -44,6 +45,10 @@ export default function Likes() {
 
   return (
     <>
+      <h4 id="liked-recipes-title">Liked recipes</h4>
+      <Form.Text id="helptext-liked" muted>
+        Here are all recipes you liked!
+      </Form.Text>
       <Overview recipes={recipes} />
     </>
   );
