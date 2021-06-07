@@ -52,7 +52,7 @@ export default function RecipeDetail({ match }) {
 
   function deleteRecipe(recipeId) {
     db.collection("recipe").doc(recipeId).delete();
-    history.push("/likes");
+    history.push("/created");
   }
 
   return (
@@ -117,7 +117,6 @@ export default function RecipeDetail({ match }) {
           </ReactCardFlip>
         )}
       </div>
-      {console.log(showDeleteButton)}
       {showDeleteButton && (
         <Button
           id="recipe-detail-delete"
