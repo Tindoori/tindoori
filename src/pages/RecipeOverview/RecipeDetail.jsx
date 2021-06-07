@@ -33,7 +33,6 @@ export default function RecipeDetail({ match }) {
         <Form.Label>
           Click on the card to view the remaining recipe details.
         </Form.Label>
-        <br />
         {recipe && (
           <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
             <div role="tabpanel" onClick={handleRotate} aria-hidden="true">
