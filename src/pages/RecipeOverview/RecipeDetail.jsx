@@ -5,6 +5,7 @@ import { Card, ListGroupItem, ListGroup, Form } from "react-bootstrap";
 import firebase from "firebase";
 import * as PropTypes from "prop-types";
 import ReactCardFlip from "react-card-flip";
+import "./RecipeDetail.css";
 
 export default function RecipeDetail({ match }) {
   const [recipe, setRecipe] = useState();
@@ -28,7 +29,7 @@ export default function RecipeDetail({ match }) {
 
   return (
     <>
-      <div id="feed">
+      <div id="recipe-detail-container">
         <Form.Label>
           Click on the card to view the remaining recipe details.
         </Form.Label>
@@ -37,12 +38,10 @@ export default function RecipeDetail({ match }) {
           <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
             <div role="tabpanel" onClick={handleRotate} aria-hidden="true">
               <Card id="recipe-detail-card">
-                <Card.Img id="recipe-img" src={recipe.imgPath} />
+                <Card.Img id="recipe-detail-img" src={recipe.imgPath} />
                 <Card.Body>
                   <Card.Title>{recipe.name}</Card.Title>
-                  <Card.Text id="recipe-detail-description">
-                    {recipe.description}
-                  </Card.Text>
+                  <Card.Text>{recipe.description}</Card.Text>
                   <ListGroupItem>
                     <Card.Text id="recipe-detail-description">
                       Allergies: {recipe.allergy}
@@ -50,12 +49,12 @@ export default function RecipeDetail({ match }) {
                   </ListGroupItem>
                   <ListGroupItem>
                     <Card.Text id="recipe-detail-description">
-                      Dietpreference: {recipe.dietary}
+                      Diet preference: {recipe.dietary}
                     </Card.Text>
                   </ListGroupItem>
                   <ListGroupItem>
                     <Card.Text className="recipe-detail-description">
-                      Mealtype: {recipe.mealtype}
+                      Type of meal: {recipe.mealtype}
                     </Card.Text>
                   </ListGroupItem>
                   <ListGroupItem>
@@ -67,7 +66,7 @@ export default function RecipeDetail({ match }) {
               </Card>
             </div>
             <div role="tabpanel" onClick={handleRotate} aria-hidden="true">
-              <Card id="recipe-card">
+              <Card id="recipe-detail-card">
                 <Card.Body>
                   <Card.Header>Ingredients</Card.Header>
                   <ListGroup variant="flush">
