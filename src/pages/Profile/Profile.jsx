@@ -6,6 +6,7 @@ export default function Profile() {
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(false);
   const [email, setEmail] = useState("");
+  const [currPass, setCurrPass] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newPass, setNewPass] = useState("");
   const [repeatNewPass, setRepeatNewPass] = useState("");
@@ -16,7 +17,21 @@ export default function Profile() {
     setNewEmail(firebase.auth().currentUser.email);
   }, []);
 
+  // Reauthenticate the user before anything dangerous can happen
+  const reauthenticate = async () => {
+    const credential = firebase.auth.EmailAuthProvider.credential(
+      user.email,
+      currPass
+    );
+
+    await user.reauthenticateWithCredential(credential).catch((e) => {
+      setMessage(e.message);
+      setSuccess(false);
+    });
+  };
+
   const changeEmail = () => {
+    reauthenticate();
     if (email !== newEmail) {
       user.updateEmail(newEmail);
       setSuccess(true);
@@ -24,6 +39,7 @@ export default function Profile() {
   };
 
   const changePass = () => {
+    reauthenticate();
     if (newPass === repeatNewPass && newPass.length !== 0) {
       user.updatePassword(newPass).catch((e) => {
         setMessage(e.message);
@@ -72,6 +88,15 @@ export default function Profile() {
             type="password"
             onChange={(e) => setRepeatNewPass(e.target.value)}
           />
+          <Form.Label>Current Password:</Form.Label>
+          <Form.Control
+            name="currPass"
+            type="password"
+            onChange={(e) => setCurrPass(e.target.value)}
+          />
+          <Form.Text className="text-muted">
+            Enter your currrent password before submitting the changes.
+          </Form.Text>
           {success ? (
             <Alert variant="success" role="alert">
               Information is successfully changed
