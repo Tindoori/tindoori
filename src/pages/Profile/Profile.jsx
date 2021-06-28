@@ -31,25 +31,27 @@ export default function Profile() {
   };
 
   const changeEmail = () => {
-    reauthenticate();
-    if (email !== newEmail) {
-      user.updateEmail(newEmail);
-      setSuccess(true);
-    }
+    reauthenticate().then(() => {
+      if (email !== newEmail) {
+        user.updateEmail(newEmail);
+        setSuccess(true);
+      }
+    });
   };
 
   const changePass = () => {
-    reauthenticate();
-    if (newPass === repeatNewPass && newPass.length !== 0) {
-      user.updatePassword(newPass).catch((e) => {
-        setMessage(e.message);
+    reauthenticate().then(() => {
+      if (newPass === repeatNewPass && newPass.length !== 0) {
+        user.updatePassword(newPass).catch((e) => {
+          setMessage(e.message);
+          setSuccess(false);
+        });
+        setSuccess(true);
+      } else if (newPass !== repeatNewPass) {
+        setMessage("Passwords don't match up");
         setSuccess(false);
-      });
-      setSuccess(true);
-    } else if (newPass !== repeatNewPass) {
-      setMessage("Passwords don't match up");
-      setSuccess(false);
-    }
+      }
+    });
   };
 
   const handleSubmit = (e) => {
